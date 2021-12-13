@@ -149,9 +149,10 @@ for n in new_nodes:
     for node in g.keys():
         if n in g_copy[node]:
             g_copy[node].append(n * 2)
+    
     visit(g_copy, 'start')
 
-    # converting paths A-b-A-bb to A-b-A-b in resulting array
+    # converting paths like A-b-A-bb to A-b-A-b in resulting array
     new_paths = []
     for path in paths:
         nodes = path.split('-')
