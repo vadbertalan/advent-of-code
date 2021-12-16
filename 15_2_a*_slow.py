@@ -1,4 +1,4 @@
-# !!!!!   Very slow but works in ~ 1 hour.
+# !!!!!   Very slow but works in ~ 1 hour. Second solution resolves under 32s
 
 # --- Part Two - --
 
@@ -43,7 +43,7 @@ data_str1 = """1163751742
 1293138521
 2311944581"""
 
-# data_str1 = open('15_input.txt', 'r').read()
+data_str1 = open('15_input.txt', 'r').read()
 
 lines = data_str1.split('\n')
 
@@ -116,18 +116,24 @@ def get_cost_on_coord(coord):
     return extended_data[coord[0]][coord[1]]
 
 
-def get_min_shortest_dist_coord():
-    min_item = MAX
-    min_coords = None
+queue = set()
 
-    for i in range(N):
-        for j in range(M):
-            if not seen[i][j] and shortest_dist_weighted[i][j] < min_item:
-                min_coords = (i, j)
-                min_item = shortest_dist_weighted[i][j]
 
-    if min_coords == None:
-        raise 'Error in get min shortest dist'
+def get_cur_shortest_dist_coord_from_queue():
+    global queue
+
+    min_coords = min(
+        queue, key=lambda coord: shortest_dist_weighted[coord[0]][coord[1]])
+    queue.remove(min_coords)
+
+    # for i in range(N):
+    #     for j in range(M):
+    #         if not seen[i][j] and shortest_dist_weighted[i][j] < min_item:
+    #             min_coords = (i, j)
+    #             min_item = shortest_dist_weighted[i][j]
+
+    # if min_coords == None:
+    #     raise 'Error in get min shortest dist'
     return min_coords
 
 
@@ -142,18 +148,19 @@ while current_coord != (N - 1, M - 1):
         'up': [current_coord[0] - 1, current_coord[1]]
     }
 
+    # it would be enough to pass through only the coord
     dir_coords = list(filter(lambda item: valid_coord(
         item[1]) and not seen[item[1][0]][item[1][1]], neighbors.items()))
     for dc in dir_coords:
         if shortest_dist[dc[1][0]][dc[1][1]] > shortest_dist[current_coord[0]][current_coord[1]] + get_cost_on_coord(dc[1]):
+            queue.add(tuple(dc[1]))
             shortest_dist[dc[1][0]][dc[1][1]] = shortest_dist[current_coord[0]
                                                               ][current_coord[1]] + get_cost_on_coord(dc[1])
             shortest_dist_weighted[dc[1][0]][dc[1][1]] = shortest_dist[current_coord[0]
                                                                        ][current_coord[1]] + get_cost_on_coord(dc[1]) + weights[dc[1][0]][dc[1][1]]
             parents[dc[1][0]][dc[1][1]] = current_coord
 
-    min_coord = get_min_shortest_dist_coord()
-    current_coord = min_coord
+    current_coord = get_cur_shortest_dist_coord_from_queue()
 
 for i in shortest_dist:
     for j in i:
@@ -182,6 +189,14 @@ for line in route_mat:
 
 print(
     f'shortest dist from 0,0 to {N},{M} -> {cost}  |  {shortest_dist[N - 1][M - 1]}')
+
+c = 0
+for i in range(N):
+    for j in range(M):
+        c += 1 if seen[i][j] else 0
+print(f'Total vertices: {N * M}')
+print(f'Seen vertices: {c}')
+print(f'Unseen vertices: {N * M - c}')
 
 stop = timeit.default_timer()
 print(f'\nTime: {stop - start_time} s')
