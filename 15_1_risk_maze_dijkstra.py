@@ -47,7 +47,7 @@ data_str1 = """1163751742
 1293138521
 2311944581"""
 
-# data_str1 = open('15_input.txt', 'r').read()
+data_str1 = open('15_input.txt', 'r').read()
 lines = data_str1.split('\n')
 
 data = []
@@ -64,12 +64,15 @@ shortest_dist = [[MAX for x in range(M)] for y in range(N)]
 parents = [[None for x in range(M)] for y in range(N)]
 shortest_dist[0][0] = 0
 
+
 def valid_coord(coord):
     return 0 <= coord[0] < N and 0 <= coord[1] < M
 
-def get_data_on_coord(coord): 
+
+def get_data_on_coord(coord):
     global data
     return data[coord[0]][coord[1]]
+
 
 def get_min_shortest_dist_coord():
     min_item = MAX
@@ -85,8 +88,9 @@ def get_min_shortest_dist_coord():
         raise 'Error in get min shortest dist'
     return min_coords
 
+
 current_coord = (0, 0)
-while current_coord != (N - 1, M - 1): 
+while current_coord != (N - 1, M - 1):
     seen[current_coord[0]][current_coord[1]] = True
 
     neighbors = {
@@ -96,10 +100,12 @@ while current_coord != (N - 1, M - 1):
         'up': [current_coord[0] - 1, current_coord[1]]
     }
 
-    dir_coords = list(filter(lambda item: valid_coord(item[1]) and not seen[item[1][0]][item[1][1]], neighbors.items()))
+    dir_coords = list(filter(lambda item: valid_coord(
+        item[1]) and not seen[item[1][0]][item[1][1]], neighbors.items()))
     for dc in dir_coords:
         if shortest_dist[dc[1][0]][dc[1][1]] > shortest_dist[current_coord[0]][current_coord[1]] + get_data_on_coord(dc[1]):
-            shortest_dist[dc[1][0]][dc[1][1]] = shortest_dist[current_coord[0]][current_coord[1]] + get_data_on_coord(dc[1])
+            shortest_dist[dc[1][0]][dc[1][1]] = shortest_dist[current_coord[0]
+                                                              ][current_coord[1]] + get_data_on_coord(dc[1])
             parents[dc[1][0]][dc[1][1]] = current_coord
 
     min_coord = get_min_shortest_dist_coord()
@@ -111,7 +117,7 @@ while current_coord != (N - 1, M - 1):
 
 route = []
 cur = (N - 1, M - 1)
-while cur != (0, 0): 
+while cur != (0, 0):
     route.append(cur)
     cur = parents[cur[0]][cur[1]]
 
@@ -123,4 +129,3 @@ for line in route_mat:
     print(''.join(line))
 
 print(f'shortest dist from 0,0 to {N},{M} -> {shortest_dist[N - 1][M - 1]}')
-

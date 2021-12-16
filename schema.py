@@ -1,3 +1,9 @@
+import math
+import timeit
+from collections import Counter
+start_time = timeit.default_timer()
+
+
 data_str1 = """"""
 
 data_str = """"""
@@ -29,3 +35,6 @@ def print_data():
 print_data()
 
 print(res)
+
+stop = timeit.default_timer()
+print(f'\nTime: {stop - start_time} s')
