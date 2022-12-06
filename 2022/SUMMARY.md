@@ -5,3 +5,4 @@
 | 3   | Rucksack - char repetition             | 00:40       |                    |
 | 4   | Space clearing - section overlap check | 00:36       |                    |
 | 5   | CrateMover 9001 - stacks               | 01:35       |                    |
+| 6   | Signal mark - not repeating char       | 00:33       |                    |
