@@ -7,3 +7,4 @@
 | 5   | CrateMover 9001                | 01:35       | stacks                    |
 | 6   | Signal mark                    | 00:33       | not repeating char        |
 | 7   | Filesystem                     | 01:28       | tree                      |
+| 7   | Tree house                     | 00:53       | matrix indices            |
