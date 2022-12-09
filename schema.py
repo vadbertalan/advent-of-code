@@ -1,8 +1,10 @@
 from collections import Counter
 import math
+import sys
 import timeit
 start_time = timeit.default_timer()
 
+printing_enabled = sys.argv[1] == '-v' if len(sys.argv) == 2 else False
 
 data_str1 = """"""
 
@@ -12,13 +14,15 @@ lines = data_str1.split('\n')
 
 res = 0
 
-for line in lines:
-    print(line)
-
 data = []
 N = len(lines)
 M = len(lines[0])
-print(N, M)
+
+if printing_enabled:
+    print(N, M)
+    for line in lines:
+        print(line)
+    print()
 
 for line in lines:
     data.append(list(map(int, line)))
@@ -32,7 +36,9 @@ def print_data():
     print()
 
 
-print_data()
+if printing_enabled:
+    print_data()
+    print()
 
 print(res)
 
