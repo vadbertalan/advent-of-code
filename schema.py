@@ -4,13 +4,15 @@ import sys
 import timeit
 start_time = timeit.default_timer()
 
+from aocd import data as aocdata, lines, numbers, submit
+
 printing_enabled = sys.argv[1] == '-v' if len(sys.argv) == 2 else False
 
 data_str1 = """"""
 
-data_str = """"""
+data_str = aocdata
 
-lines = data_str1.split('\n')
+lines = data_str.split('\n')
 
 res = 0
 
