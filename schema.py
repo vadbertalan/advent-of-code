@@ -12,7 +12,7 @@ data_str1 = """"""
 
 data_str = aocdata
 
-lines = data_str.split('\n')
+lines = data_str1.split('\n')
 
 res = 0
 
@@ -43,6 +43,8 @@ if printing_enabled:
     print()
 
 print(res)
+
+# submit(res)
 
 stop = timeit.default_timer()
 print(f'\n✨Time: {stop - start_time} s')
