@@ -11,5 +11,6 @@
 | 9   | Rope                           | 05:19               | matrix indices                         |
 | 10  | CPU Register + CRT drawing     | 06:29               | -                                      |
 | 11  | Monkey thieves                 | >24h                | mod arithmetics (NEW for me)           |
-| 12  | Hill climbing shortest path    | 19:44:57            | dijkstra (second very slow and lucky?) |
-| 13  | Pair, list comparisions        | 01:27:49            | -                                      |
+| 12  | Hill climbing shortest path    | 19:44               | dijkstra (second very slow and lucky?) |
+| 13  | Pair, list comparisons         | 01:27               | -                                      |
+| 14  | Cave filling with sand          | 02:53               | -                                      |
