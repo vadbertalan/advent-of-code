@@ -27,8 +27,6 @@ data_str = data_str_test if with_test_data else aocdata
 
 lines = data_str.split('\n')
 
-res = 0
-
 data = []
 N = len(lines)
 M = len(lines[0])
@@ -83,17 +81,19 @@ if printing_enabled:
 
 
 # Solution:
+solution = 0
 
 
-print(res)
+
+print(solution)
 
 if should_submit:
-	response = input(f'Are you sure you want to submit {res}? [y/n] -> ')
+	response = input(f'Are you sure you want to submit {solution}? [y/n] -> ')
 	if 'y' in response:
-		print(f'✨ Submitting solution: {res}')
-		submit(res)
+		print(f'✨ Submitting solution: {solution}')
+		submit(solution)
 	else:
-		print(f'❌ Not submitting solution: {res}')
+		print(f'❌ Not submitting solution: {solution}')
 
 stop = timeit.default_timer()
 print(f'\n✨Time: {stop - start_time} s')
