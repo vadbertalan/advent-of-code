@@ -83,18 +83,11 @@ for line in data_str.split('\n'):
                           line.split('to ')[1].split(' ')[1:]))
     nodes[name] = Node(neighbours, pressure, name)
 
-# valves_sorted_by_pressure = list(map(lambda x: Valve(x.pressure, x.name), sorted(
-# 	nodes.values(), key=lambda x: x.pressure, reverse=True)))
 valves = list(
     map(lambda x: Valve(x.pressure, x.name), nodes.values()))
-valves_filtered_and_sorted = list(
+valves_filtered = list(
     filter(lambda x: x.pressure > 0, valves))
 
-# if printing_enabled:
-#     print()
-#     pp.pprint(nodes)
-#     # pp.pprint(valves_sorted_by_pressure)
-#     print()
 
 
 def dijkstra_all(nodes: Dict[str, Node], cost_fn) -> List[List[int]]:
@@ -161,24 +154,22 @@ def traverse(currentnodename, closednodenames: List[str], minutesleft: int, gain
 
     pressures = []
     for targetnodename in closednodenames:
-        # if (currentnodename == 'AA' and targetnodename == 'DD') or (currentnodename == 'BB' and targetnodename == 'JJ' and route[0] == 'DD'):
-        #     print('elo')
         minutesneededtoreach = distinminutes[currentnodename][targetnodename]
-        if minutesneededtoreach < minutesleft:
-            gain = newgainperminute * minutesneededtoreach
-            pressures.append(gain + (gainperminute if openedvalvethisminute else 0) + traverse(targetnodename, [*closednodenames],
-                                                                                               minutesleft - minutesneededtoreach, newgainperminute, [*route]))
-        # else:
-        #     print('hooya')
+        # if minutesneededtoreach < minutesleft and not minutesneededtoreach + 2 < minutesleft:
+        #     print('aaaa')
+        if minutesneededtoreach + 2 < minutesleft:
+            gain_on_the_route = newgainperminute * minutesneededtoreach
+            pressures.append(gain_on_the_route + traverse(targetnodename, closednodenames.copy(),
+                                                                                               minutesleft - minutesneededtoreach, newgainperminute, route.copy()))
     if len(pressures) > 0:
-        return max(pressures)
+        return (gainperminute if openedvalvethisminute else 0) + max(pressures)
 
     return (gainperminute if openedvalvethisminute else 0) + traverse(currentnodename, [], minutesleft - 1, newgainperminute, route)
 
 
 # Solution:
 solution = traverse('AA', list(
-    map(lambda valve: valve.name, valves_filtered_and_sorted)), 30, 0, [])
+    map(lambda valve: valve.name, valves_filtered)), 30, 0, [])
 
 
 print(solution)
