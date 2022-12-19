@@ -1,6 +1,7 @@
 # https //adventofcode.com/2022/day/18
 
 # (You guessed 4044.) too high
+# Right answer: 2456
 
 from typing import Dict, List, Tuple
 from aocd import data as aocdata, lines, numbers, submit
