@@ -8,6 +8,7 @@ import sys
 import timeit
 start_time = timeit.default_timer()
 
+sys.setrecursionlimit(1500)
 
 if len(sys.argv) > 2 or (len(sys.argv) == 2 and '-' not in sys.argv[1]):
     print(f'Usage: python {sys.argv[0]} [-vls] where:')
@@ -19,13 +20,19 @@ if len(sys.argv) > 2 or (len(sys.argv) == 2 and '-' not in sys.argv[1]):
 printing_enabled = False
 with_test_data = True
 should_submit = False
+testdata1 = False
+testdata2 = False
+testdata3 = False
 if len(sys.argv) == 2:
     printing_enabled = 'v' in sys.argv[1]  # verbose
     with_test_data = 'l' not in sys.argv[1]  # live data
     should_submit = 's' in sys.argv[1]  # submit at the end
+    testdata1 = '1' in sys.argv[1]
+    testdata2 = '2' in sys.argv[1]
+    testdata3 = '3' in sys.argv[1]
 
 # answer 58
-data_str_test = """2,2,2
+data_str_test1 = """2,2,2
 1,2,2
 3,2,2
 2,1,2
@@ -51,6 +58,7 @@ data_str_test2 = """1,2,2
 2,2,1
 3,2,1"""
 
+# answer 126
 data_str_test3 = """2,1,1
 3,1,1
 4,1,1
@@ -106,8 +114,12 @@ data_str_test3 = """2,1,1
 3,4,4
 4,4,4"""
 
-
-data_str = data_str_test3 if with_test_data else aocdata
+test_data = data_str_test3
+if testdata1:
+    test_data = data_str_test1
+elif testdata2:
+    test_data = data_str_test2
+data_str = test_data if with_test_data else aocdata
 
 
 class Coord3(object):
@@ -153,21 +165,21 @@ INFINITY = 99999999999
 min_x = min_y = min_z = INFINITY
 max_x = max_y = max_z = -INFINITY
 
-for cube in cubes:
-    if cube.x < min_x:
-        min_x = cube.x
-    if cube.x > max_x:
-        max_x = cube.x
+for cube_tuple in cubes:
+    if cube_tuple.x < min_x:
+        min_x = cube_tuple.x
+    if cube_tuple.x > max_x:
+        max_x = cube_tuple.x
 
-    if cube.y < min_y:
-        min_y = cube.y
-    if cube.y > max_y:
-        max_y = cube.y
+    if cube_tuple.y < min_y:
+        min_y = cube_tuple.y
+    if cube_tuple.y > max_y:
+        max_y = cube_tuple.y
 
-    if cube.z < min_z:
-        min_z = cube.z
-    if cube.z > max_z:
-        max_z = cube.z
+    if cube_tuple.z < min_z:
+        min_z = cube_tuple.z
+    if cube_tuple.z > max_z:
+        max_z = cube_tuple.z
 
 if printing_enabled:
     print('number of cubes:', len(cubes))
@@ -216,17 +228,18 @@ for x in range(min_x, max_x + 1):
         coord = Coord3(x, y, min_z - 1)
         wall_coords_map[coord.get_tuple()] = True
 
-surrounded_cube_map = {}
-visited_coords_map = {}
+surrounded_cube_map = set()
+visited_coords_map = set()
 
 
 def can_reach_wall_of_cage(coord: Coord3):
     global visited_coords_map, surrounded_cube_map
 
-    visited_coords_map[coord.get_tuple()] = True
+    visited_coords_map.add(coord.get_tuple())
+    print(coord)
 
     if coord.get_tuple() in surrounded_cube_map:
-        return surrounded_cube_map[coord.get_tuple()]
+        return False
 
     surrounding_coords = [
         Coord3(coord.x, coord.y, coord.z + 1),  # up
@@ -246,8 +259,11 @@ def can_reach_wall_of_cage(coord: Coord3):
         return True
 
     # if any of destination coords are surrounded for sure, then this coord is surrounded too
-    if any(map(lambda coord: (surrounded_cube_map[coord.get_tuple()] == True) if coord.get_tuple() in surrounded_cube_map else False, eligible_surrounding_coords)):
-        surrounded_cube_map[coord.get_tuple()] = True
+    if any(map(lambda coord: coord.get_tuple() in surrounded_cube_map, surrounding_coords)):
+        # surrounded_cube_map.add(coord.get_tuple())
+        if coord.get_tuple() == (3, 9, 4):
+            print(coord)
+        print(coord)
         return False
 
     # each valid surrounding coord will be traversed
@@ -260,10 +276,11 @@ def can_reach_wall_of_cage(coord: Coord3):
 
 
 def is_coord_surrounded(coord: Coord3):
-    global visited_coords_map
-    visited_coords_map = {}
+    global surrounded_cube_map
+    # visited_coords_map = {}
     is_surrounded = not can_reach_wall_of_cage(coord)
-    surrounded_cube_map[coord.get_tuple()] = is_surrounded
+    if is_surrounded:
+        surrounded_cube_map.add(coord.get_tuple())
     return is_surrounded
 
 
@@ -297,14 +314,14 @@ for x in range(min_x, max_x + 1):
 
 if printing_enabled:
     print('total count of surrounded cubes:', surrounded_cube_count)
-    # print('surrounded cubes:', surrounded_cube_map)
+    print('surrounded cubes:', surrounded_cube_map)
 
-for cube in surrounded_cube_map.keys():
-    if cube in cubes_coord_map:
-        print(cube, 'is a bad boy')
+for cube_tuple in surrounded_cube_map:
+    if cube_tuple in cubes_coord_map:
+        print(cube_tuple, 'is a bad boy')
 
 inner_air_common_sides = get_common_side_count(
-    list(map(get_coord_of_tuple, filter(lambda tuple: surrounded_cube_map[tuple] == True, surrounded_cube_map.keys()))))
+    list(map(get_coord_of_tuple, list(surrounded_cube_map))))
 print(f'inner_air_common_sides:', inner_air_common_sides)
 solution = open_sides - (6 * surrounded_cube_count -
                          2 * inner_air_common_sides)
