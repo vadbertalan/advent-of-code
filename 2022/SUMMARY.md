@@ -13,4 +13,8 @@
 | 11  | Monkey thieves                 | >24h                | mod arithmetics (NEW for me)           |
 | 12  | Hill climbing shortest path    | 19:44               | dijkstra (second very slow and lucky?) |
 | 13  | Pair, list comparisons         | 01:27               | -                                      |
-| 14  | Cave filling with sand          | 02:53               | -                                      |
+| 14  | Cave filling with sand         | 02:53               | -                                      |
+| 15  |                                |                     | -                                      |
+| 16  |                                |                     | -                                      |
+| 17  |                                |                     | -                                      |
+| 18  | Lava droplets - cubes          | >24h                | "Building walls" - DFS                 |
