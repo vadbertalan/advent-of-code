@@ -1,7 +1,7 @@
 # (You guessed 1873.) too high, but correct for someone else
 # (You guessed 1872.) your answer is too high
-
-# Your puzzle answer was 1796.
+# (You guessed 0.) by mistake
+# (You guessed 1945.) too low...
 
 import pprint
 from typing import Dict, List
@@ -68,10 +68,10 @@ class Valve(object):
         self.name = name
 
     def __str__(self):
-        return f'{self.name} ({self.pressure}) -> isopen = {self.isopen}'
+        return f'{self.name} ({self.pressure})'
 
     def __repr__(self):
-        return f'{self.name} ({self.pressure}) -> isopen = {self.isopen}'
+        return f'{self.name} ({self.pressure})'
 
 
 nodes = {}
@@ -89,8 +89,8 @@ valves = list(
     map(lambda x: Valve(x.pressure, x.name), nodes.values()))
 valves_filtered = list(
     filter(lambda x: x.pressure > 0, valves))
-
-
+valve_names_filtered = list(map(lambda x: x.name, valves_filtered))
+print(valve_names_filtered)
 
 def dijkstra_all(nodes: Dict[str, Node], cost_fn) -> List[List[int]]:
     node_count = len(nodes)
@@ -162,7 +162,7 @@ def traverse(currentnodename, closednodenames: List[str], minutesleft: int, gain
         if minutesneededtoreach + 2 < minutesleft:
             gain_on_the_route = newgainperminute * minutesneededtoreach
             pressures.append(gain_on_the_route + traverse(targetnodename, closednodenames.copy(),
-                                                                                               minutesleft - minutesneededtoreach, newgainperminute, route.copy()))
+                                                          minutesleft - minutesneededtoreach, newgainperminute, route.copy()))
     if len(pressures) > 0:
         return (gainperminute if openedvalvethisminute else 0) + max(pressures)
 
@@ -170,10 +170,59 @@ def traverse(currentnodename, closednodenames: List[str], minutesleft: int, gain
 
 
 # Solution:
-solution = traverse('AA', list(
-    map(lambda valve: valve.name, valves_filtered)), 30, 0, [])
+solution = 0
+
+# item_combinations = []
+TARGET_LEN = len(valves_filtered) / 2
 
 
+# def backtrack(input_set: set, items: list):
+#     print(input_set, items)
+#     global item_combinations, TARGET_LEN
+#     for valve in input_set:
+#         items.append(valve)
+#         items_set = set(items)
+#         if len(items_set) == len(items):
+#             if len(items) < TARGET_LEN:
+#                 new_input_set = input_set.copy()
+#                 new_input_set.remove(valve)
+#                 backtrack(new_input_set, items.copy())
+#             elif len(items) == TARGET_LEN and items_set not in item_combinations:
+#                 item_combinations.append(items_set.copy())
+#                 print(f'Found {items_set} - {len(item_combinations)}')
+#         items.remove(valve)
+
+# valve_names = list(map(lambda x: x.name, valves_filtered))
+# backtrack(set(valve_names), [])
+# print('Nr of combinations:', len(item_combinations))
+
+furthest_valve_name, furthest_dist = list(filter(lambda v: v[0] in valve_names_filtered, sorted(distinminutes['AA'].items(), key=(lambda a: a[1]))))[-1]
+team1 = []
+print(furthest_valve_name, furthest_dist)
+for valve, distinmin in filter(lambda v: v[0] in valve_names_filtered, sorted(distinminutes[furthest_valve_name].items(), key=lambda x: x[1])):
+    if len(team1) < TARGET_LEN - 1:
+        team1.append(valve)
+    else:
+        break
+
+max_score = 0
+team2 = []
+for valve in valves_filtered:
+    if valve.name not in team1:
+        team2.append(valve.name)
+score1 = traverse('AA', team1, 26, 0, [])
+score2 = traverse('AA', team2, 26, 0, [])
+print(f'Score of {team1} and {team2}: {score1 + score2}')
+max_score = max(max_score, score1 + score2)
+
+print(max_score)
+
+# print(item_combinations)
+
+# traverse('AA', list(
+#     map(lambda valve: valve.name, valves_filtered)), 30, 0, [])
+
+solution = max_score
 print(solution)
 
 if should_submit:
