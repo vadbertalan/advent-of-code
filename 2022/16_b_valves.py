@@ -1,7 +1,10 @@
-# (You guessed 1873.) too high, but correct for someone else
-# (You guessed 1872.) your answer is too high
+# https://adventofcode.com/2022/day/16
+
 # (You guessed 0.) by mistake
 # (You guessed 1945.) too low...
+# (You guessed 2396.) too high...
+
+# Correct answer 1999
 
 import pprint
 from typing import Dict, List
@@ -90,7 +93,8 @@ valves = list(
 valves_filtered = list(
     filter(lambda x: x.pressure > 0, valves))
 valve_names_filtered = list(map(lambda x: x.name, valves_filtered))
-print(valve_names_filtered)
+print('valve names filtered:', valve_names_filtered)
+
 
 def dijkstra_all(nodes: Dict[str, Node], cost_fn) -> List[List[int]]:
     node_count = len(nodes)
@@ -173,7 +177,7 @@ def traverse(currentnodename, closednodenames: List[str], minutesleft: int, gain
 solution = 0
 
 # item_combinations = []
-TARGET_LEN = len(valves_filtered) / 2
+TARGET_LEN = int(len(valves_filtered) / 2)
 
 
 # def backtrack(input_set: set, items: list):
@@ -196,24 +200,84 @@ TARGET_LEN = len(valves_filtered) / 2
 # backtrack(set(valve_names), [])
 # print('Nr of combinations:', len(item_combinations))
 
-furthest_valve_name, furthest_dist = list(filter(lambda v: v[0] in valve_names_filtered, sorted(distinminutes['AA'].items(), key=(lambda a: a[1]))))[-1]
-team1 = []
-print(furthest_valve_name, furthest_dist)
-for valve, distinmin in filter(lambda v: v[0] in valve_names_filtered, sorted(distinminutes[furthest_valve_name].items(), key=lambda x: x[1])):
-    if len(team1) < TARGET_LEN - 1:
-        team1.append(valve)
-    else:
-        break
-
 max_score = 0
-team2 = []
-for valve in valves_filtered:
-    if valve.name not in team1:
-        team2.append(valve.name)
-score1 = traverse('AA', team1, 26, 0, [])
-score2 = traverse('AA', team2, 26, 0, [])
-print(f'Score of {team1} and {team2}: {score1 + score2}')
-max_score = max(max_score, score1 + score2)
+# furthest_valve_name, furthest_dist = list(filter(lambda v: v[0] in valve_names_filtered, sorted(
+#     distinminutes['AA'].items(), key=(lambda a: a[1]))))[-1]
+# print(furthest_valve_name, furthest_dist)
+
+# for i in range(-10, 10):
+#     print(f'try with i = {i}')
+#     team1 = []
+#     l = list(filter(lambda v: v[0] in valve_names_filtered, sorted(
+#         distinminutes[furthest_valve_name].items(), key=lambda x: x[1])))
+#     for valve, distinmin in l:
+#         if len(team1) < TARGET_LEN + i:
+#             team1.append(valve)
+#         else:
+#             break
+
+#     team2 = []
+#     for valve in valves_filtered:
+#         if valve.name not in team1:
+#             team2.append(valve.name)
+#     score1 = traverse('AA', team1, 26, 0, [])
+#     score2 = traverse('AA', team2, 26, 0, [])
+#     print(f'\tScore of {team1} and {team2}: {score1 + score2}')
+#     max_score = max(max_score, score1 + score2)
+
+# Python3 program to find all subsets
+# by backtracking.
+res = []
+
+# In the array A at every step we have two
+# choices for each element either we can
+# ignore the element or we can include the
+# element in our subset
+def subsetsUtil(A, subset, index):
+    global res
+    if len(subset) == TARGET_LEN:
+        res.append(subset.copy())
+    for i in range(index, len(A)):
+
+        # include the A[i] in subset.
+        subset.append(A[i])
+
+        # move onto the next element.
+        subsetsUtil(A, subset, i + 1)
+
+        # exclude the A[i] from subset and
+        # triggers backtracking.
+        subset.pop(-1)
+    return
+
+
+def subsets(A):
+    subset = []
+    index = 0
+    subsetsUtil(A, subset, index)
+
+subsets(valve_names_filtered)
+print(len(res))
+
+winners = []
+i = 0
+# for team1_line in open('backtrack22.out').readlines():
+#     print(team1_line)
+#     team1 = list(map(lambda x: x[1:-2], team1_line[1:-1].split(' ')))
+#     print(team1)
+for team1 in res:
+    print(team1)
+    team2 = []
+    for valve in valves_filtered:
+        if valve.name not in team1:
+            team2.append(valve.name)
+    score1 = traverse('AA', team1, 26, 0, [])
+    score2 = traverse('AA', team2, 26, 0, [])
+    print(f'\tScore of {team1} and {team2}: {score1 + score2} -- {i + 1}')
+    i += 1
+    if (score1 + score2 == 2396):
+        winners.append([team1, team2, score1 + score2])
+    max_score = max(max_score, score1 + score2)
 
 print(max_score)
 
