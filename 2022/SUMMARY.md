@@ -18,3 +18,5 @@
 | 16  |                                |                     | -                                      |
 | 17  |                                |                     | -                                      |
 | 18  | Lava droplets - cubes          | >24h                | "Building walls" - DFS                 |
+| 19  |           |                 |                  |
+| 20  | File decryption          | 06:11                | Modulo - `% (N - 1)` trick                 |
