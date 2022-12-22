@@ -1,4 +1,8 @@
+# https://adventofcode.com/2022/day/15
+
 # (You guessed 4229194. too low)
+
+# Your puzzle answer was 5832528.
 
 from aocd import data as aocdata, lines, numbers, submit
 from collections import Counter

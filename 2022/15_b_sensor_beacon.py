@@ -1,3 +1,7 @@
+# https://adventofcode.com/2022/day/15
+
+# Your puzzle answer was 13360899249595.
+
 from aocd import data as aocdata, lines, numbers, submit
 from collections import Counter
 import math
