@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"os"
 	"strconv"
+	"strings"
 )
 
 // Read line by line into memory.
@@ -32,4 +33,10 @@ func ConvertToInts(strs []string) (ints []int) {
 		ints = append(ints, intval)
 	}
 	return ints
+}
+
+// Splits the string in 2 and returns the resulting 2 strings
+func SplitIn2(str string, sep string) (string, string) {
+	split := strings.Split(str, sep)
+	return split[0], split[1]
 }

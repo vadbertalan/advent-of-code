@@ -1,3 +1,5 @@
+// https://adventofcode.com/2023/day/1
+
 package main
 
 import (
@@ -26,6 +28,7 @@ func first(lines []string) {
 		if len(digitChars) >= 0 {
 			nr, _ = strconv.Atoi(string(digitChars[0]) + string(digitChars[len(digitChars)-1]))
 		}
+
 		sum += nr
 	}
 

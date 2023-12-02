@@ -10,21 +10,22 @@ import (
 
 const aocDay int = 1
 
-func first(input []int) {
+func first(lines []string) {
 	println("First ---")
+
+	for _, line := range lines {
+		fmt.Println(line)
+	}
 }
 
-func second(input []int) {
+func second(lines []string) {
 	println("Second ---")
 }
 
 func main() {
 	lines := utils.ReadLines(fmt.Sprintf("%d.in", aocDay))
-	ints := utils.ConvertToInts(lines)
 
-	// fmt.Println(ints)
+	first(lines)
 
-	first(ints)
-
-	second(ints)
+	second(lines)
 }
