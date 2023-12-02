@@ -8,7 +8,7 @@ import (
 	// "unicode"
 )
 
-const aocDay int = 1
+const aocDay int = 999
 
 func first(lines []string) {
 	println("First ---")
@@ -22,8 +22,10 @@ func second(lines []string) {
 	println("Second ---")
 }
 
-func main() {
-	lines := utils.ReadLines(fmt.Sprintf("%d.in", aocDay))
+func DYNmain() {
+	inputFileExtension := utils.GetInputFileExt()
+
+	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
 	first(lines)
 

@@ -2,6 +2,8 @@ package utils
 
 import (
 	"bufio"
+	"flag"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -39,4 +41,21 @@ func ConvertToInts(strs []string) (ints []int) {
 func SplitIn2(str string, sep string) (string, string) {
 	split := strings.Split(str, sep)
 	return split[0], split[1]
+}
+
+// Returns the input file extension based on the command line args.
+func GetInputFileExt() string {
+	useExampleP := flag.Bool("ex", false, "Specify if you want to run the solution against the quick example provided in the AoC problem description.")
+	flag.Parse()
+
+	var inputFileExtension string
+	if *useExampleP {
+		fmt.Println("Using example input")
+		fmt.Println("-------------------")
+		inputFileExtension = "exin"
+	} else {
+		inputFileExtension = "in"
+	}
+
+	return inputFileExtension
 }
