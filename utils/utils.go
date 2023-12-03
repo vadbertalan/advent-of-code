@@ -45,16 +45,16 @@ func SplitIn2(str string, sep string) (string, string) {
 
 // Returns the input file extension based on the command line args.
 func GetInputFileExt() string {
-	useExampleP := flag.Bool("ex", false, "Specify if you want to run the solution against the quick example provided in the AoC problem description.")
+	useRealInputP := flag.Bool("r", false, "Specify if you want to run the solution against the real personalized input. By default the example provided in the AoC problem description is used.")
 	flag.Parse()
 
 	var inputFileExtension string
-	if *useExampleP {
+	if *useRealInputP {
+		inputFileExtension = "in"
+	} else {
 		fmt.Println("Using example input")
 		fmt.Println("-------------------")
 		inputFileExtension = "exin"
-	} else {
-		inputFileExtension = "in"
 	}
 
 	return inputFileExtension
