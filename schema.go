@@ -3,23 +3,26 @@ package main
 import (
 	"aoc/utils"
 	"fmt"
-	// "strconv"
-	// "strings"
-	// "unicode"
 )
 
 const aocDay int = 999
 
 func first(lines []string) {
-	println("First ---")
+	fmt.Println("First ---")
+
+	result := 0
 
 	for _, line := range lines {
 		fmt.Println(line)
+
 	}
+
+	fmt.Println(result)
 }
 
 func second(lines []string) {
-	println("Second ---")
+	fmt.Println("\nSecond ---")
+
 }
 
 func DYNmain() {
