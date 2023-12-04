@@ -3,12 +3,13 @@ package main
 import (
 	"aoc/utils"
 	"fmt"
+	"time"
 )
 
 const aocDay int = 999
 
 func first(lines []string) {
-	fmt.Println("First ---")
+	fmt.Println("--- First ---")
 
 	result := 0
 
@@ -21,11 +22,13 @@ func first(lines []string) {
 }
 
 func second(lines []string) {
-	fmt.Println("\nSecond ---")
+	fmt.Println("\n--- Second ---")
 
 }
 
 func DYNmain() {
+	startTime := time.Now()
+
 	inputFileExtension := utils.GetInputFileExt()
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
@@ -33,4 +36,8 @@ func DYNmain() {
 	first(lines)
 
 	second(lines)
+
+	programDuration := time.Since(startTime).Seconds()
+
+	fmt.Printf("\n✨ Finished in %.3f seconds\n", programDuration)
 }
