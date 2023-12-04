@@ -109,7 +109,7 @@ func second(lines []string) {
 		cardCount += 1
 
 		for card := processedCard + 1; card < processedCard+1+yieldCounts[processedCard]; card++ {
-			if card < initialCardCount {
+			if card <= initialCardCount {
 				cardStack.Push(card)
 			}
 		}
