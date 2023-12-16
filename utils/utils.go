@@ -163,8 +163,8 @@ func LCM(a, b int) int {
 	return a * b / GCD(a, b)
 }
 
-func ParseInts(str string) []int {
-	nrStrList := strings.Fields(str)
+func ParseInts(str string, sep string) []int {
+	nrStrList := strings.Split(str, sep)
 	nrs := []int{}
 	for _, str := range nrStrList {
 		nr, _ := strconv.Atoi(str)
@@ -180,4 +180,38 @@ func Contains[T comparable](arr []T, x T) bool {
 		}
 	}
 	return false
+}
+
+func Find[T any](arr []T, predicate func(T) bool) (item *T, index int) {
+	for i := 0; i < len(arr); i++ {
+		if predicate(arr[i]) {
+			return &arr[i], i
+		}
+	}
+	return nil, -1
+}
+
+func RemoveOnIndexOrderPreserved[T any](arr []T, index int) []T {
+	return append(arr[:index], arr[index+1:]...)
+}
+
+func RemoveOnIndex[T any](arr []T, index int) []T {
+	arr[index] = arr[len(arr)-1]
+	return arr[:len(arr)-1]
+}
+
+func Sum(arr []int) (sum int) {
+	for _, v := range arr {
+		sum += v
+	}
+	return sum
+}
+
+func GetIndices(in string, of string) (ret []int) {
+	for i := 0; i < len(in); i++ {
+		if string(in[i]) == of {
+			ret = append(ret, i)
+		}
+	}
+	return ret
 }

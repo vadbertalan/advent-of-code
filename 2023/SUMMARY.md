@@ -13,3 +13,5 @@
 | 11  | Galaxy distances and expansions      | 00:47               | matrix                                         | Observatory  | easy                 |
 | 12  | Hot springs                          | -                   | backtracking (16s p1)                          | Onsen        | hard                 |
 | 13  | Mirror valley                        | 02:39               | matrix                                         |              | easy, but meh        |
+| 14  | Parabolic reflector dish             | -                   | matrix                                         |              | hard                 |
+| 15  | Hashing with raindeer                | >24h                | pointer                                        | hard-hat     | very easy            |
