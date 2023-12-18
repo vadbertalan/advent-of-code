@@ -16,7 +16,7 @@ func checkErr(err error) {
 	}
 }
 
-func createGoFileFromSchema(src string, dst string, currentDay int) {
+func createGoFileFromSchema(src string, dst string, currentYear, currentDay int) {
 	// Read all content of src to data, may cause OOM for a large file.
 	data, err := os.ReadFile(src)
 	checkErr(err)
@@ -25,6 +25,7 @@ func createGoFileFromSchema(src string, dst string, currentDay int) {
 
 	// Substitute current day variable dynamically
 	dataStr = strings.Replace(dataStr, "aocDay int = 999", fmt.Sprintf("aocDay int = %d", currentDay), 1)
+	dataStr = strings.Replace(dataStr, "yyyy/day/dd", fmt.Sprintf("%d/day/%d", currentYear, currentDay), 1)
 	// This is needed because, having main name would cause lint error
 	dataStr = strings.Replace(dataStr, "DYNmain", "main", 1)
 
@@ -101,7 +102,7 @@ func main() {
 	inFileName := fmt.Sprintf("%s/%d.in", newFolder, currentDay)
 
 	// Create Go src file
-	createGoFileFromSchema("schema.go", goFileName, currentDay)
+	createGoFileFromSchema("schema.go", goFileName, currentYear, currentDay)
 
 	// Create input file for quick example
 	err := os.WriteFile(inExampleFileName, []byte("\n"), os.ModePerm)
