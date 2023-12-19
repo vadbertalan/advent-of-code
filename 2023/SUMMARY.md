@@ -15,3 +15,4 @@
 | 13  | Mirror valley                        | 02:39               | matrix                                         |              | easy, but meh        |
 | 14  | Parabolic reflector dish             | -                   | matrix                                         |              | hard                 |
 | 15  | Hashing with raindeer                | >24h                | pointer                                        | hard-hat     | very easy            |
+| 18  | Lava lagoon                          | 16:47               | flood fill, shoelace formula, pick's theorem   | RGB hexa     | medium               |
