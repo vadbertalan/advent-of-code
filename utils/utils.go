@@ -215,3 +215,11 @@ func GetIndices(in string, of string) (ret []int) {
 	}
 	return ret
 }
+
+func ShallowCopyMap[K comparable, V any](m map[K]V) (newMap map[K]V) {
+	newMap = map[K]V{}
+	for k, v := range m {
+		newMap[k] = v
+	}
+	return newMap
+}

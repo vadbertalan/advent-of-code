@@ -98,13 +98,13 @@ func second(lines []string) {
 
 	cardCount := 0
 
-	cardStack := utils.Stack{}
+	cardStack := utils.Stack[int]{}
 	for cardId := 1; cardId <= initialCardCount; cardId++ {
 		cardStack.Push(cardId)
 	}
 
 	for !cardStack.IsEmpty() {
-		processedCard, _ := cardStack.Pop()
+		processedCard := cardStack.Pop()
 
 		cardCount += 1
 

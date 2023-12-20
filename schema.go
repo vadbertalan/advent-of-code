@@ -10,7 +10,13 @@ import (
 
 const aocDay int = 999
 
-func first(lines []string) {
+//  ____            _     _
+// |  _ \ __ _ _ __| |_  / |
+// | |_) / _` | '__| __| | |
+// |  __/ (_| | |  | |_  | |
+// |_|   \__,_|_|   \__| |_|
+
+func First(lines []string) (strigifiedResult string) {
 	fmt.Println("--- First ---")
 
 	result := 0
@@ -20,12 +26,23 @@ func first(lines []string) {
 
 	}
 
-	fmt.Println(result)
+	strigifiedResult = string(rune(result))
+	return strigifiedResult
 }
 
-func second(lines []string) {
+//  ____            _     ____
+// |  _ \ __ _ _ __| |_  |___ \
+// | |_) / _` | '__| __|   __) |
+// |  __/ (_| | |  | |_   / __/
+// |_|   \__,_|_|   \__| |_____|
+
+func Second(lines []string) (strigifiedResult string) {
 	fmt.Println("\n--- Second ---")
 
+	result := 0
+
+	strigifiedResult = string(rune(result))
+	return strigifiedResult
 }
 
 func DYNmain() {
@@ -35,9 +52,11 @@ func DYNmain() {
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
-	first(lines)
+	result := First(lines)
+	fmt.Println(result)
 
-	second(lines)
+	result = Second(lines)
+	fmt.Println(result)
 
 	programDuration := time.Since(startTime).Seconds()
 

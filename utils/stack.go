@@ -2,38 +2,54 @@ package utils
 
 import "fmt"
 
-type Stack struct {
-	items []int
+type Stack[T any] struct {
+	items []T
 }
 
-func (s *Stack) IsEmpty() bool {
+func (s *Stack[T]) IsEmpty() bool {
 	if len(s.items) == 0 {
 		return true
 	}
 	return false
 }
 
-func (s *Stack) Top() (int, error) {
+func (s *Stack[T]) Top() T {
 	if s.IsEmpty() {
-		return 0, fmt.Errorf("Stack is empty")
+		print("Stack is empty")
 	}
-	return s.items[len(s.items)-1], nil
+	return s.items[len(s.items)-1]
 }
 
-func (s *Stack) Push(data int) {
+func (s *Stack[T]) TopSafe() (*T, error) {
+	if s.IsEmpty() {
+		return nil, fmt.Errorf("Stack is empty")
+	}
+	return &s.items[len(s.items)-1], nil
+}
+
+func (s *Stack[T]) Push(data T) {
 	s.items = append(s.items, data)
 }
 
-func (s *Stack) Pop() (int, error) {
+func (s *Stack[T]) Pop() T {
 	if s.IsEmpty() {
-		return 0, fmt.Errorf("Stack is empty")
+		panic("Stack is empty")
 	}
-	ret, _ := s.Top()
+	ret := s.Top()
+	s.items = s.items[:len(s.items)-1]
+	return ret
+}
+
+func (s *Stack[T]) PopSafe() (*T, error) {
+	if s.IsEmpty() {
+		return nil, fmt.Errorf("Stack is empty")
+	}
+	ret, _ := s.TopSafe()
 	s.items = s.items[:len(s.items)-1]
 	return ret, nil
 }
 
-func (s *Stack) Print() {
+func (s *Stack[T]) Print() {
 	for _, item := range s.items {
 		fmt.Print(item, " ")
 	}
