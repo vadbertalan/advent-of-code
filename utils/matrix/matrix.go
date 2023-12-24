@@ -8,10 +8,30 @@ import (
 
 type coord = coordinate.Coord
 
-type Matrix[T any] struct {
+type Matrix[T comparable] struct {
 	Values      [][]T
 	RowCount    int
 	ColumnCount int
+}
+
+func (m Matrix[T]) Clone() Matrix[T] {
+	mClone := Matrix[T]{RowCount: m.RowCount, ColumnCount: m.ColumnCount, Values: make([][]T, len(m.Values))}
+	for i := 0; i < m.RowCount; i++ {
+		mClone.Values[i] = make([]T, len(m.Values[i]))
+		for j := 0; j < m.ColumnCount; j++ {
+			mClone.Values[i][j] = m.Values[i][j]
+		}
+	}
+	return mClone
+}
+
+func (m Matrix[T]) PrintWithSpacing() {
+	for i := 0; i < m.RowCount; i++ {
+		for j := 0; j < m.ColumnCount; j++ {
+			fmt.Printf("%5v", m.Values[i][j])
+		}
+		fmt.Println()
+	}
 }
 
 func (m Matrix[T]) Print() {
@@ -21,6 +41,16 @@ func (m Matrix[T]) Print() {
 		}
 		fmt.Println()
 	}
+}
+
+func (m Matrix[T]) Println() {
+	m.Print()
+	fmt.Println()
+}
+
+func (m Matrix[T]) PrintlnWithSpacing() {
+	m.PrintWithSpacing()
+	fmt.Println()
 }
 
 func (m Matrix[T]) IsValidCoord(c coord) bool {
@@ -35,15 +65,34 @@ func (m Matrix[T]) At(c coord) T {
 	return m.Values[c.Row][c.Col]
 }
 
-type offset struct {
-	dir       direction.Direction
-	rowOffset int
-	colOffset int
+func (m Matrix[T]) Set(c coord, value T) {
+	if !m.IsValidCoord(c) {
+		panic(fmt.Sprintf("Invalid matrix coordinate: (%d, %d)", c.Row, c.Col))
+	}
+
+	m.Values[c.Row][c.Col] = value
 }
 
-func getOffsetsArray(diagonal bool) []offset {
+func (m Matrix[T]) Count(value T) (count int) {
+	for i := 0; i < m.RowCount; i++ {
+		for j := 0; j < m.ColumnCount; j++ {
+			if m.Values[i][j] == value {
+				count++
+			}
+		}
+	}
+	return count
+}
+
+type Offset struct {
+	Dir       direction.Direction
+	RowOffset int
+	ColOffset int
+}
+
+func GetOffsetsArray(diagonal bool) []Offset {
 	if diagonal {
-		return []offset{
+		return []Offset{
 			{direction.Up, -1, 0},
 			{direction.UpRight, -1, 1},
 			{direction.Right, 0, 1},
@@ -54,7 +103,7 @@ func getOffsetsArray(diagonal bool) []offset {
 			{direction.LeftUp, -1, -1},
 		}
 	}
-	return []offset{
+	return []Offset{
 		{direction.Up, -1, 0},
 		{direction.Right, 0, 1},
 		{direction.Down, 1, 0},
@@ -66,15 +115,15 @@ func getOffsetsArray(diagonal bool) []offset {
 // Returns all neighboring coordinates that passes the test or an empty array if none
 // passed the test.
 func (m Matrix[T]) GetValidNeighborCoords(c coord, test func(value T, neighborCoord coord, dir direction.Direction) bool, diagonal bool) (coords []coord) {
-	offsets := getOffsetsArray(diagonal)
+	offsets := GetOffsetsArray(diagonal)
 	neighborCount := len(offsets)
 	for i := 0; i < neighborCount; i++ {
-		xx := c.Row + offsets[i].rowOffset
-		yy := c.Col + offsets[i].colOffset
+		xx := c.Row + offsets[i].RowOffset
+		yy := c.Col + offsets[i].ColOffset
 		newCoord := coord{Row: xx, Col: yy}
 		if m.IsValidCoord(newCoord) {
 			val := m.Values[xx][yy]
-			if test(val, newCoord, offsets[i].dir) {
+			if test(val, newCoord, offsets[i].Dir) {
 				coords = append(coords, newCoord)
 			}
 		}

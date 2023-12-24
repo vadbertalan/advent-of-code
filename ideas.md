@@ -1,3 +1,4 @@
 - next year summary p1 p2 time separately
 - tests with correct results
 - CI integration
+- migrate to GitHub

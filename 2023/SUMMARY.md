@@ -9,7 +9,7 @@
 | 7   | Poker with Jokers                    | 04:46               | sorting, enums                                 | Airship      | easy, but time cons.   |
 | 8   | Ghosts in desert                     | 08:11               | lcm                                            |              | easy                   |
 | 9   | Extrapolate numbers                  | 00:46               | -                                              | Hand glider  | easy                   |
-| 10  | Pipes                                | -                   | matrix, backtraging in plane                   |              | hard                   |
+| 10  | Pipes                                | -                   | matrix, backtracking in plane                   |              | hard                   |
 | 11  | Galaxy distances and expansions      | 00:47               | matrix                                         | Observatory  | easy                   |
 | 12  | Hot springs                          | -                   | backtracking (16s p1)                          | Onsen        | hard                   |
 | 13  | Mirror valley                        | 02:39               | matrix                                         |              | easy, but meh          |
@@ -17,3 +17,4 @@
 | 15  | Hashing with raindeer                | >24h                | pointer                                        | hard-hat     | very easy              |
 | 18  | Lava lagoon                          | 16:47               | flood fill, shoelace formula, pick's theorem   | RGB hexa     | medium                 |
 | 19  | X-M-A-S possibilities                | >24h                | tree, paths in tree, possibility calculation   | Aplenty      | medium, but time cons. |
+| 21  | Help with remaining steps            | >72h                | BFS, flood fill, math, rhombus                 |              | very hard              |
