@@ -22,3 +22,4 @@
 | 20  | File decryption                | 06:11               | Modulo - `% (N - 1)` trick              |
 | 21  | Monkey math - equation         | >24h                | build tree - build equation             |
 | 22  | Monkey map - cube folding      | 19:09               | Hard coded indexes                      |
+| 23  | Unstable Diffusion             | 14:10               |                                         |
