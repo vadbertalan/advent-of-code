@@ -1,4 +1,4 @@
-package utils
+package collections
 
 import "fmt"
 
@@ -6,11 +6,13 @@ type Queue[T any] struct {
 	items []T
 }
 
+func NewQueue[T any]() *Queue[T] {
+	q := &Queue[T]{}
+	return q
+}
+
 func (s *Queue[T]) IsEmpty() bool {
-	if len(s.items) == 0 {
-		return true
-	}
-	return false
+	return len(s.items) == 0
 }
 
 func (s *Queue[T]) First() T {

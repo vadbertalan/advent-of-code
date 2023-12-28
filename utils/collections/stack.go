@@ -1,4 +1,4 @@
-package utils
+package collections
 
 import "fmt"
 
@@ -7,10 +7,7 @@ type Stack[T any] struct {
 }
 
 func (s *Stack[T]) IsEmpty() bool {
-	if len(s.items) == 0 {
-		return true
-	}
-	return false
+	return len(s.items) == 0
 }
 
 func (s *Stack[T]) Top() T {

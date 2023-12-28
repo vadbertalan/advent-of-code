@@ -4,6 +4,7 @@ package main
 
 import (
 	"aoc/utils"
+	"aoc/utils/collections"
 	"aoc/utils/coordinate"
 	"aoc/utils/direction"
 	"aoc/utils/matrix"
@@ -44,7 +45,7 @@ func travbfs(m mat, seen coordinate.CoordMap, maxDist int, sc coord, odd int) in
 		dist = 1
 	}
 
-	q := utils.Queue[cd]{}
+	q := collections.Queue[cd]{}
 	q.Append(cd{sc, dist})
 
 	for !q.IsEmpty() {

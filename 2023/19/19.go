@@ -4,6 +4,7 @@ package main
 
 import (
 	"aoc/utils"
+	"aoc/utils/collections"
 	"aoc/utils/graph"
 	"fmt"
 	"strconv"
@@ -305,7 +306,7 @@ func second(lines []string) {
 	// Build tree
 	var rootNode *node
 
-	queue := utils.Queue[wfNode]{}
+	queue := collections.Queue[wfNode]{}
 	queue.Append(wfNode{parentNode: nil, value: pathRule{name: rootName}})
 
 	for !queue.IsEmpty() {
@@ -382,7 +383,6 @@ func second(lines []string) {
 
 		// Summarize range
 		pathPoss := (xmasRanges["x"][1] - xmasRanges["x"][0] + 1) * (xmasRanges["m"][1] - xmasRanges["m"][0] + 1) * (xmasRanges["a"][1] - xmasRanges["a"][0] + 1) * (xmasRanges["s"][1] - xmasRanges["s"][0] + 1)
-		fmt.Printf("path poss %d\n", pathPoss)
 		result += pathPoss
 	}
 

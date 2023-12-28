@@ -200,6 +200,15 @@ func RemoveOnIndex[T any](arr []T, index int) []T {
 	return arr[:len(arr)-1]
 }
 
+func RemoveItemFromArray[T comparable](arr []T, item T) []T {
+	for i := 0; i < len(arr); i++ {
+		if arr[i] == item {
+			return RemoveOnIndex(arr, i)
+		}
+	}
+	return arr
+}
+
 func Sum(arr []int) (sum int) {
 	for _, v := range arr {
 		sum += v

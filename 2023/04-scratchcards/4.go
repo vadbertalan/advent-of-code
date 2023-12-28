@@ -4,6 +4,7 @@ package main
 
 import (
 	"aoc/utils"
+	"aoc/utils/collections"
 	"fmt"
 	"strconv"
 	"strings"
@@ -39,10 +40,8 @@ func first(lines []string) {
 		}
 
 		localNrsStrList := strings.Fields(localNrsStr)
-		localNrs := []int{}
 		for _, str := range localNrsStrList {
 			localNr, _ := strconv.Atoi(str)
-			localNrs = append(localNrs, localNr)
 
 			if contains(winningNrs, localNr) {
 				if cardPoints == 0 {
@@ -83,10 +82,8 @@ func second(lines []string) {
 		}
 
 		localNrsStrList := strings.Fields(localNrsStr)
-		localNrs := []int{}
 		for _, str := range localNrsStrList {
 			localNr, _ := strconv.Atoi(str)
-			localNrs = append(localNrs, localNr)
 
 			if contains(winningNrs, localNr) {
 				cardYields += 1
@@ -98,7 +95,7 @@ func second(lines []string) {
 
 	cardCount := 0
 
-	cardStack := utils.Stack[int]{}
+	cardStack := collections.Stack[int]{}
 	for cardId := 1; cardId <= initialCardCount; cardId++ {
 		cardStack.Push(cardId)
 	}
