@@ -14,7 +14,8 @@
 | 12  | Hot springs                          | -                   | backtracking (16s p1)                          | Onsen        | hard                   | Hint      |
 | 13  | Mirror valley                        | 02:39               | matrix                                         |              | easy, but meh          |           |
 | 14  | Parabolic reflector dish             | -                   | matrix                                         |              | hard                   |           |
-| 15  | Hashing with raindeer                | >24h                | pointer                                        | hard-hat     | very easy              |           |
+| 15  | Hashing with reindeer                | >24h                | pointer                                        | hard-hat     | very easy              |           |
+| 18  | Crucible                             | >72h                | path-finding, kinda dijkstra, priority queue   | crucible     | hard                   | Solution  |
 | 18  | Lava lagoon                          | 16:47               | flood fill, shoelace formula, pick's theorem   | RGB hexa     | medium                 | Hint      |
 | 19  | X-M-A-S possibilities                | >24h                | tree, paths in tree, possibility calculation   | Aplenty      | medium, but time cons. |           |
 | 21  | Help with remaining steps            | >72h                | BFS, flood fill, math, rhombus                 |              | very hard              | Hint      |
