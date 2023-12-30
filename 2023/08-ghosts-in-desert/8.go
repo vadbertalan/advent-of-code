@@ -127,7 +127,7 @@ func second(lines []string) {
 func main() {
 	startTime := time.Now()
 
-	inputFileExtension := utils.GetInputFileExt()
+	inputFileExtension := utils.GetInputFileExt(2)
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 

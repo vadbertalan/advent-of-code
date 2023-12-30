@@ -104,7 +104,7 @@ func First(lines []string) (strigifiedResult string) {
 func main() {
 	startTime := time.Now()
 
-	inputFileExtension := utils.GetInputFileExt()
+	inputFileExtension := utils.GetInputFileExt(1)
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 

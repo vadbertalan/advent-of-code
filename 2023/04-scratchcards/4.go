@@ -118,7 +118,7 @@ func second(lines []string) {
 // Tried 9441994 but failed, it is too low
 
 func main() {
-	inputFileExtension := utils.GetInputFileExt()
+	inputFileExtension := utils.GetInputFileExt(1)
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
