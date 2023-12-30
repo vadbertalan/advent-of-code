@@ -7,7 +7,6 @@ import (
 	"aoc/utils/coordinate"
 	"aoc/utils/direction"
 	"fmt"
-	"math"
 	"strconv"
 	"strings"
 	"time"
@@ -199,20 +198,8 @@ func second(lines []string) {
 	coords = coords[:len(coords)-1]
 
 	// Calculating area with Shoelace formulae https://en.wikipedia.org/wiki/Shoelace_formula
-	// See other formulas
-	A := 0
-	for i := 0; i < len(coords); i++ {
-		multiplier := 1
-		if i == 0 {
-			multiplier = coords[1].Col - coords[len(coords)-1].Col
-		} else if i == len(coords)-1 {
-			multiplier = coords[0].Col - coords[len(coords)-2].Col
-		} else {
-			multiplier = coords[i+1].Col - coords[i-1].Col
-		}
-		A += coords[i].Row * multiplier
-	}
-	A = int(math.Abs(float64(A))) / 2
+	// See `Other formulas` section. Absolute value is needed because of the order of the vertices.
+	A := int(utils.CalcAreaShoelace(coords))
 
 	// Pick's theorem https://en.wikipedia.org/wiki/Pick%27s_theorem
 	i := A - b/2 + 1
@@ -228,7 +215,7 @@ func main() {
 
 	startTime := time.Now()
 
-	inputFileExtension := utils.GetInputFileExt()
+	inputFileExtension := utils.GetInputFileExt(1)
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
