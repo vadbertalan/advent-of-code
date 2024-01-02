@@ -72,5 +72,5 @@ for i in range(1, N):
         val_left = sum_mat[i][j - 1]
         sum_mat[i][j] = min([val_up, val_left]) + extended_data[i][j]
 
-print_data(sum_mat)
+# print_data(sum_mat)
 print(sum_mat[N - 1][M - 1])
