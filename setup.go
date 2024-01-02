@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -77,39 +78,48 @@ func main() {
 	currentYear := now.Year()
 	currentDay := now.Day()
 
-	fmt.Printf("Hello! ☀️\nSetting up Go workspace for day %d. GL! 🤙\n\n", currentDay)
+	yearInputP := flag.Int("y", currentYear, "Specify to tell the bootstrapper script the year in which you want to generate files for a day.")
+	dayInputP := flag.Int("d", currentDay, "Specify to tell the bootstrapper script the day you want to generate files for.")
+	flag.Parse()
 
-	currentDayFolderName := fmt.Sprint(currentDay)
+	fmt.Printf("Hello, AoC warrior! ☀️\nSetting up Go workspace for day %d, %d. GL! 🤙\n\n", *dayInputP, *yearInputP)
+
+	currentDayFolderName := fmt.Sprint(*dayInputP)
 
 	// Pad the folder name in case the day is <= 9
 	if len(currentDayFolderName) == 1 {
 		currentDayFolderName = fmt.Sprintf("0%s", currentDayFolderName)
 	}
 
-	newFolder := fmt.Sprintf("%d/%s", currentYear, currentDayFolderName)
-
-	// Create dir for current day
-	if err := os.Mkdir(newFolder, os.ModePerm); err != nil {
-		log.Fatal(err)
+	// Create dir for year if it does not exist yet
+	newFolderForYear := fmt.Sprint(*yearInputP)
+	if err := os.MkdirAll(newFolderForYear, os.ModePerm); err != nil {
+		log.Fatal("Error while creating folder for year: ", err)
 	}
 
-	fmt.Printf("Created folder for today's problem, %s, make sure to navigate into it:\n\ncd %s\n\n", currentDayFolderName, newFolder)
+	// Create dir for current day. If dir for day already exists, fails.
+	newFolderForDay := fmt.Sprintf("%s/%s", newFolderForYear, currentDayFolderName)
+	if err := os.Mkdir(newFolderForDay, os.ModePerm); err != nil {
+		log.Fatal("Error while creating folder for day: ", err)
+	}
+
+	fmt.Printf("Created folder for problem %s, make sure to navigate into it:\n\ncd %s\n\n", currentDayFolderName, newFolderForDay)
 
 	// Create files
 
-	goFileName := fmt.Sprintf("%s/%d.go", newFolder, currentDay)
-	inExampleFileName := fmt.Sprintf("%s/%d.exin", newFolder, currentDay)
-	inFileName := fmt.Sprintf("%s/%d.in", newFolder, currentDay)
+	goFileName := fmt.Sprintf("%s/%d.go", newFolderForDay, *dayInputP)
+	inExampleFileName := fmt.Sprintf("%s/%d.exin", newFolderForDay, *dayInputP)
+	inFileName := fmt.Sprintf("%s/%d.in", newFolderForDay, *dayInputP)
 
 	// Create Go src file
-	createGoFileFromSchema("schema.go", goFileName, currentYear, currentDay)
+	createGoFileFromSchema("schema.go", goFileName, *yearInputP, *dayInputP)
 
 	// Create input file for quick example
 	err := os.WriteFile(inExampleFileName, []byte("\n"), os.ModePerm)
 	checkErr(err)
 
 	// Create input file
-	input := WebInput(currentYear, currentDay)
+	input := WebInput(*yearInputP, *dayInputP)
 	err = os.WriteFile(inFileName, []byte(fmt.Sprintf("%s", input)), os.ModePerm)
 	checkErr(err)
 
