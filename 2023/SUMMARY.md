@@ -13,7 +13,7 @@
 | 11  | Galaxy distances and expansions      | 00:47               | matrix                                             | Observatory  | easy                   |           |
 | 12  | Hot springs                          | after d25           | backtracking (16s p1), recursive one-by-one, cache | Onsen        | hard                   | Hint      |
 | 13  | Mirror valley                        | 02:39               | matrix                                             |              | easy, but meh          |           |
-| 14  | Parabolic reflector dish             | -                   | matrix                                             |              | hard                   |           |
+| 14  | Parabolic reflector dish             | after d25           | matrix, modulo, sorting func                       |              | hard                   | Hint      |
 | 15  | Hashing with reindeer                | >24h                | pointer                                            | hard-hat     | very easy              |           |
 | 18  | Crucible                             | after d25           | path-finding, kinda dijkstra, priority queue       | crucible     | hard                   | Solution  |
 | 18  | Lava lagoon                          | 16:47               | flood fill, Shoelace formula, Pick's theorem       | RGB hexa     | medium                 | Hint      |
