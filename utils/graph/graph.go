@@ -1,49 +1,45 @@
 package graph
 
 import (
-	"aoc/utils"
 	"aoc/utils/collections"
 	"fmt"
 )
 
-type UGraph struct {
+type EdgeKey = string
+
+type GraphMethods[T any] interface {
+	Println()
+	AddNode(name string, value T)
+	AddEdge(node1Name, node2Name string)
+	GetEdges() [2]string
+	GetIncomingNodesOf(node string) []string
+	RemoveEdge(edgeKey EdgeKey)
+	CountComponents(startNode string) int
+	TraverseBFS(startNode string) (path []string, edges []EdgeKey)
+}
+
+type Graph[T any] struct {
 	Neighbors map[string][]string
+	Values    map[string]T
 }
 
-func NewUGraph() *UGraph {
-	g := &UGraph{}
-	g.Neighbors = make(map[string][]string)
-	return g
-}
-
-func (g *UGraph) Println() {
+func (g *Graph[T]) Println() {
 	fmt.Println(g.Neighbors)
+	fmt.Println(g.Values)
 }
 
 // Idempotent: does not insert same node twice
-func (g *UGraph) AddNode(node string) {
+func (g *Graph[T]) AddNode(node string, value *T) {
 	_, ok := g.Neighbors[node]
 	if !ok {
 		g.Neighbors[node] = []string{}
+		if value != nil {
+			g.Values[node] = *value
+		}
 	}
 }
 
-func (g *UGraph) AddEdge(node1, node2 string) {
-	_, ok := g.Neighbors[node1]
-	if !ok {
-		g.AddNode(node1)
-	}
-
-	_, ok = g.Neighbors[node2]
-	if !ok {
-		g.AddNode(node2)
-	}
-
-	g.Neighbors[node1] = append(g.Neighbors[node1], node2)
-	g.Neighbors[node2] = append(g.Neighbors[node2], node1)
-}
-
-func (g *UGraph) GetEdges() (edges [][2]string) {
+func (g *Graph[T]) GetEdges() (edges [][2]string) {
 	edgeSet := collections.NewSet[string]()
 	for node, neighbors := range g.Neighbors {
 		for _, neighborNode := range neighbors {
@@ -61,13 +57,7 @@ func (g *UGraph) GetEdges() (edges [][2]string) {
 	return edges
 }
 
-func (g *UGraph) RemoveEdge(edgeKey string) {
-	node1, node2 := ParseEdgeKey(edgeKey)
-	g.Neighbors[node1] = utils.RemoveItemFromArray(g.Neighbors[node1], node2)
-	g.Neighbors[node2] = utils.RemoveItemFromArray(g.Neighbors[node2], node1)
-}
-
-func (g *UGraph) CountComponents(startNode string) int {
+func (g *Graph[T]) CountComponents(startNode string) int {
 	componentCount := 0
 
 	nodeMap := map[string]int{}
@@ -116,7 +106,7 @@ func (g *UGraph) CountComponents(startNode string) int {
 	return componentCount
 }
 
-func (g *UGraph) TraverseBFS(startNode string) (path []string, edges []string) {
+func (g *Graph[T]) TraverseBFS(startNode string) (path []string, edges []string) {
 	nodeMap := map[string]bool{}
 
 	type tf struct {

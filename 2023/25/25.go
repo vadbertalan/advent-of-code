@@ -19,7 +19,7 @@ const aocDay int = 25
 // |  __/ (_| | |  | |_  | |
 // |_|   \__,_|_|   \__| |_|
 
-func getMostUsedEdge(g graph.UGraph) (edgeKey string) {
+func getMostUsedEdge(g graph.UGraph[interface{}]) (edgeKey string) {
 	// Count init egde frequencies counter map
 	edges := g.GetEdges()
 	edgeFreqMap := map[string]int{}
@@ -64,7 +64,7 @@ func First(lines []string) (strigifiedResult string) {
 
 	result := 0
 
-	g := graph.NewUGraph()
+	g := graph.NewUGraph[interface{}]()
 
 	var firstNode string
 
@@ -76,8 +76,8 @@ func First(lines []string) (strigifiedResult string) {
 		}
 		neighbors := strings.Fields(nodesStr)
 		for _, neighbor := range neighbors {
-			g.AddNode(node1)
-			g.AddNode(neighbor)
+			g.AddNode(node1, nil)
+			g.AddNode(neighbor, nil)
 			g.AddEdge(node1, neighbor)
 		}
 	}
