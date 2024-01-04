@@ -129,12 +129,22 @@ func Keys[M ~map[K]V, K comparable, V any](m M) []K {
 	return r
 }
 
+// TODO: rename to MapValues
 func Values[M ~map[K]V, K comparable, V any](m M) []V {
 	r := make([]V, 0, len(m))
 	for _, v := range m {
 		r = append(r, v)
 	}
 	return r
+}
+
+func AllTrue(arr []bool) bool {
+	for _, v := range arr {
+		if !v {
+			return false
+		}
+	}
+	return true
 }
 
 func EqualArr[T comparable](a, b []T) bool {
@@ -180,6 +190,15 @@ func GCD(a, b int) int {
 // Least Common Multiple (LCM) via GCD
 func LCM(a, b int) int {
 	return a * b / GCD(a, b)
+}
+
+// Least Common Multiple (LCM) via GCD for an array
+func LCMArr(ints []int) int {
+	ret := 1
+	for _, v := range ints {
+		ret = LCM(ret, v)
+	}
+	return ret
 }
 
 func ParseInts(str string, sep string) []int {
