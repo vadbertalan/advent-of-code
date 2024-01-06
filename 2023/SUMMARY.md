@@ -15,9 +15,10 @@
 | 13  | Mirror valley                        | 02:39               | matrix                                             |              | easy, but meh          |             |
 | 14  | Parabolic reflector dish             | after d25           | matrix, modulo, sorting func                       |              | hard                   | Hint        |
 | 15  | Hashing with reindeer                | >24h                | pointer                                            | hard-hat     | very easy              |             |
+| 16  | Go beam                              | after d25           | matrix, recursive, max finding                     |              | easy                   |             |
 | 17  | Crucible                             | after d25           | path-finding, kinda dijkstra, priority queue       | crucible     | hard                   | Solution    |
 | 18  | Lava lagoon                          | 16:47               | flood fill, Shoelace formula, Pick's theorem       | RGB hexa     | medium                 | Hint        |
 | 19  | X-M-A-S possibilities                | >24h                | tree, paths in tree, possibility calculation       | Aplenty      | medium, but time cons. |             |
-| 20  | Flip-flop and conjunctive modules    | after d25           | directed graph, lcm, input assumption, plantuml    |              | medium                  | Hint for p2 |
+| 20  | Flip-flop and conjunctive modules    | after d25           | directed graph, lcm, input assumption, plantuml    |              | medium                 | Hint for p2 |
 | 21  | Help with remaining steps            | >72h                | BFS, flood fill, math, rhombus, input assumption   |              | very hard              | Hint        |
 | 25  | Disconnect graph                     | >24h                | BFS, edge occurrence counting, graph               |              | hard                   | Hint        |
