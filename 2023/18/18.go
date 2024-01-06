@@ -17,21 +17,6 @@ const aocDay int = 18
 type coord = coordinate.Coord
 type dir = direction.Direction
 
-type offset struct {
-	dir       direction.Direction
-	rowOffset int
-	colOffset int
-}
-
-func getOffsetsArray() []offset {
-	return []offset{
-		{direction.Up, -1, 0},
-		{direction.Right, 0, 1},
-		{direction.Down, 1, 0},
-		{direction.Left, 0, -1},
-	}
-}
-
 type coordMap map[string]bool
 
 func (cm coordMap) contains(c coord) bool {
@@ -58,11 +43,11 @@ func trav(c coord) (count int) {
 
 	count = 1
 
-	offsets := getOffsetsArray()
+	offsets := coordinate.GetOffsetsArray(false)
 	neighborCount := len(offsets)
 	for i := 0; i < neighborCount; i++ {
-		xx := c.Row + offsets[i].rowOffset
-		yy := c.Col + offsets[i].colOffset
+		xx := c.Row + offsets[i].RowOffset
+		yy := c.Col + offsets[i].ColOffset
 		nc := coord{Row: xx, Col: yy}
 		if !cm.contains(nc) && !seen.contains(nc) {
 			count += trav(nc)
@@ -139,6 +124,8 @@ func first(lines []string) {
 	fmt.Println(result + inside)
 }
 
+// Your puzzle answer was 40131.
+
 func second(lines []string) {
 	fmt.Println("\n--- Second ---")
 
@@ -208,6 +195,8 @@ func second(lines []string) {
 	result = i + b
 	fmt.Println(result)
 }
+
+// Your puzzle answer was 104454050898331.
 
 func main() {
 	// Can't be set to more than 2000000000 bytes

@@ -63,3 +63,51 @@ func (cm *CoordMap) GetAllCoordValues() []Coord {
 	}
 	return coords
 }
+
+//  ____  _       ___   __  __          _
+// |  _ \(_)_ __ / _ \ / _|/ _|___  ___| |_
+// | | | | | '__| | | | |_| |_/ __|/ _ \ __|
+// | |_| | | |  | |_| |  _|  _\__ \  __/ |_
+// |____/|_|_|   \___/|_| |_| |___/\___|\__|
+
+type DirOffset struct {
+	Dir       direction.Direction
+	RowOffset int
+	ColOffset int
+}
+
+var dirOffsetsMap map[direction.Direction]DirOffset = map[direction.Direction]DirOffset{
+	direction.Up:        {Dir: direction.Up, RowOffset: -1, ColOffset: 0},
+	direction.UpRight:   {Dir: direction.UpRight, RowOffset: -1, ColOffset: 1},
+	direction.Right:     {Dir: direction.Right, RowOffset: 0, ColOffset: 1},
+	direction.RightDown: {Dir: direction.RightDown, RowOffset: 1, ColOffset: 1},
+	direction.Down:      {Dir: direction.Down, RowOffset: 1, ColOffset: 0},
+	direction.DownLeft:  {Dir: direction.DownLeft, RowOffset: 1, ColOffset: -1},
+	direction.Left:      {Dir: direction.Left, RowOffset: 0, ColOffset: -1},
+	direction.LeftUp:    {Dir: direction.LeftUp, RowOffset: -1, ColOffset: -1},
+}
+
+func GetOffsetForDir(dir direction.Direction) DirOffset {
+	return dirOffsetsMap[dir]
+}
+
+func GetOffsetsArray(diagonal bool) []DirOffset {
+	if diagonal {
+		return []DirOffset{
+			dirOffsetsMap[direction.Up],
+			dirOffsetsMap[direction.UpRight],
+			dirOffsetsMap[direction.Right],
+			dirOffsetsMap[direction.RightDown],
+			dirOffsetsMap[direction.Down],
+			dirOffsetsMap[direction.DownLeft],
+			dirOffsetsMap[direction.Left],
+			dirOffsetsMap[direction.LeftUp],
+		}
+	}
+	return []DirOffset{
+		dirOffsetsMap[direction.Up],
+		dirOffsetsMap[direction.Right],
+		dirOffsetsMap[direction.Down],
+		dirOffsetsMap[direction.Left],
+	}
+}

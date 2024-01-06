@@ -84,38 +84,11 @@ func (m Matrix[T]) Count(value T) (count int) {
 	return count
 }
 
-type Offset struct {
-	Dir       direction.Direction
-	RowOffset int
-	ColOffset int
-}
-
-func GetOffsetsArray(diagonal bool) []Offset {
-	if diagonal {
-		return []Offset{
-			{direction.Up, -1, 0},
-			{direction.UpRight, -1, 1},
-			{direction.Right, 0, 1},
-			{direction.RightDown, 1, 1},
-			{direction.Down, 1, 0},
-			{direction.DownLeft, 1, -1},
-			{direction.Left, 0, -1},
-			{direction.LeftUp, -1, -1},
-		}
-	}
-	return []Offset{
-		{direction.Up, -1, 0},
-		{direction.Right, 0, 1},
-		{direction.Down, 1, 0},
-		{direction.Left, 0, -1},
-	}
-}
-
 // Clockwise iteration of the provided coordinate's neighbors, starting from 12 o'clock.
 // Returns all neighboring coordinates that passes the test or an empty array if none
 // passed the test.
 func (m Matrix[T]) GetValidNeighborCoords(c coord, test func(value T, neighborCoord coord, dir direction.Direction) bool, diagonal bool) (coords []coord) {
-	offsets := GetOffsetsArray(diagonal)
+	offsets := coordinate.GetOffsetsArray(diagonal)
 	neighborCount := len(offsets)
 	for i := 0; i < neighborCount; i++ {
 		xx := c.Row + offsets[i].RowOffset
@@ -140,4 +113,21 @@ func (m Matrix[T]) GetFirstValidNeighbor(c coord, test func(val T, neighborCoord
 		return &validNeighborCoords[0]
 	}
 	return nil
+}
+
+func ParseStringMatrix(lines []string) Matrix[string] {
+	m := Matrix[string]{
+		Values:      make([][]string, len(lines)),
+		RowCount:    len(lines),
+		ColumnCount: len(lines[0]),
+	}
+
+	for row, line := range lines {
+		m.Values[row] = make([]string, len(line))
+		for col, c := range line {
+			m.Values[row][col] = string(c)
+		}
+	}
+
+	return m
 }

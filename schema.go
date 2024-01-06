@@ -4,11 +4,16 @@ package main
 
 import (
 	"aoc/utils"
+	"aoc/utils/coordinate"
+	"aoc/utils/matrix"
 	"fmt"
 	"time"
 )
 
 const aocDay int = 999
+
+type coord = coordinate.Coord
+type mat = matrix.Matrix[string]
 
 //  ____            _     _
 // |  _ \ __ _ _ __| |_  / |
@@ -26,7 +31,7 @@ func First(lines []string) (strigifiedResult string) {
 
 	}
 
-	strigifiedResult = string(rune(result))
+	strigifiedResult = fmt.Sprint(result)
 	return strigifiedResult
 }
 
@@ -41,7 +46,7 @@ func Second(lines []string) (strigifiedResult string) {
 
 	result := 0
 
-	strigifiedResult = string(rune(result))
+	strigifiedResult = fmt.Sprint(result)
 	return strigifiedResult
 }
 

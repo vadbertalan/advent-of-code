@@ -16,22 +16,11 @@ type mat = matrix.Matrix[string]
 const rock = "#"
 const ash = "."
 
-func parseMatrix(lines []string) mat {
-	m := matrix.Matrix[string]{
-		Values:      make([][]string, len(lines)),
-		RowCount:    len(lines),
-		ColumnCount: len(lines[0]),
-	}
-
-	for row, line := range lines {
-		m.Values[row] = make([]string, len(line))
-		for col, c := range line {
-			m.Values[row][col] = string(c)
-		}
-	}
-
-	return m
-}
+//  ____            _     _
+// |  _ \ __ _ _ __| |_  / |
+// | |_) / _` | '__| __| | |
+// |  __/ (_| | |  | |_  | |
+// |_|   \__,_|_|   \__| |_|
 
 func areRowsEqual(rowIndex1, rowIndex2 int, m mat) bool {
 	for col := 0; col < m.ColumnCount; col++ {
@@ -61,7 +50,7 @@ func first(lines []string) {
 		if line != "" {
 			matrixLines = append(matrixLines, line)
 		} else {
-			m := parseMatrix(matrixLines)
+			m := matrix.ParseStringMatrix(matrixLines)
 
 			// Check vertical mirrors
 			for mirrorAfterIndex := 0; mirrorAfterIndex < m.ColumnCount-1; mirrorAfterIndex++ {
@@ -108,6 +97,13 @@ func first(lines []string) {
 }
 
 // tried 2005, but wrong
+// Your puzzle answer was 37025.
+
+//  ____            _     ____
+// |  _ \ __ _ _ __| |_  |___ \
+// | |_) / _` | '__| __|   __) |
+// |  __/ (_| | |  | |_   / __/
+// |_|   \__,_|_|   \__| |_____|
 
 func areRowsEqual2(rowIndex1, rowIndex2 int, m mat) (bool, bool) {
 	diffFound := false
@@ -141,13 +137,11 @@ func second(lines []string) {
 	result := 0
 
 	matrixLines := []string{}
-	for p, line := range lines {
+	for _, line := range lines {
 		if line != "" {
 			matrixLines = append(matrixLines, line)
 		} else {
-			fmt.Println("------")
-			fmt.Println(p)
-			m := parseMatrix(matrixLines)
+			m := matrix.ParseStringMatrix(matrixLines)
 
 			standardVerticalScore := 0
 			standardHorizontalScore := 0
@@ -179,16 +173,12 @@ func second(lines []string) {
 				}
 
 				if isMirror {
-					fmt.Println("	Vertical mirror after index:", mirrorAfterIndex)
 					if diffCount > 0 {
 						newVerticalScore += mirrorAfterIndex + 1
-						fmt.Println("	Mirror with diffcount", diffCount)
 						isNewVerticalReflectionLine = true
 					} else {
 						standardVerticalScore += mirrorAfterIndex + 1
-						fmt.Println("	Mirror standard")
 					}
-					// break
 				}
 			}
 
@@ -216,33 +206,22 @@ func second(lines []string) {
 				}
 
 				if isMirror {
-					fmt.Println("Horizontal mirror after index:", mirrorAfterIndex)
-
 					if diffCount > 0 {
 						newHorizontalScore += 100 * (mirrorAfterIndex + 1)
-						fmt.Println("	Mirror with 1 diffcount", diffCount)
 						isNewHorizontalReflectionLine = true
 					} else {
 						standardHorizontalScore += mirrorAfterIndex + 1
-						fmt.Println("	Mirror standard")
 					}
-					// break
 				}
 			}
 
-			if isNewVerticalReflectionLine && isNewHorizontalReflectionLine {
-				fmt.Println("Oh uh, trouble! -> both new vertical and horizontal refl lines")
-			}
 			if isNewVerticalReflectionLine && !isNewHorizontalReflectionLine {
-				fmt.Println("	Adding vertical only for new ver refl line")
 				result += newVerticalScore
 			}
 			if isNewHorizontalReflectionLine && !isNewVerticalReflectionLine {
-				fmt.Println("	Adding horizontal only for new hor refl line")
 				result += newHorizontalScore
 			}
 			if !isNewVerticalReflectionLine && !isNewHorizontalReflectionLine {
-				fmt.Println("	Adding standard way (no new refl lines)")
 				result += newVerticalScore + newHorizontalScore
 			}
 
@@ -259,6 +238,7 @@ func second(lines []string) {
 // too low 	28400
 // wrong 	28669
 // wrong 	23615
+// Your puzzle answer was 32854.
 
 func main() {
 	startTime := time.Now()
