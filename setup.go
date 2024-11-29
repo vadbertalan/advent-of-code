@@ -82,6 +82,11 @@ func main() {
 	dayInputP := flag.Int("d", currentDay, "Specify to tell the bootstrapper script the day you want to generate files for.")
 	flag.Parse()
 
+	// Check if the user wants to generate files for the current day and year in December (only allowed in December)
+	if *yearInputP == currentYear && *dayInputP == currentDay && now.Month() != time.December {
+		log.Fatal("Error: Falling back to current year and day is only allowed in December.")
+	}
+
 	fmt.Printf("Hello, AoC warrior! ☀️\nSetting up Go workspace for day %d, %d. GL! 🤙\n\n", *dayInputP, *yearInputP)
 
 	currentDayFolderName := fmt.Sprint(*dayInputP)
@@ -120,7 +125,7 @@ func main() {
 
 	// Create input file
 	input := WebInput(*yearInputP, *dayInputP)
-	err = os.WriteFile(inFileName, []byte(fmt.Sprintf("%s", input)), os.ModePerm)
+	err = os.WriteFile(inFileName, input, os.ModePerm)
 	checkErr(err)
 
 	fmt.Printf("Created files:\n- %s\n- %s\n- %s\n\n", goFileName, inExampleFileName, inFileName)
