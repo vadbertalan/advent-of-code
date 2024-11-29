@@ -2,7 +2,7 @@
 
 Hello and welcome! In this repo I gather all my solutions to all the AoC editions.
 
-[[TOC]]
+[[_TOC_]]
 
 # Setup
 
