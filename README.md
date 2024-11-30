@@ -44,16 +44,33 @@ The Go framework uses command line flags to determine which input file to use. H
 #### Example Usage
 
 To run the solution against the real input file:
+
 ```sh
 go run 25.go -r
 ```
 
 To run the solution against the second example input file:
+
 ```sh
 go run 25.go -e2
 ```
 
 To run the solution against the default example input file:
+
 ```sh
 go run 25.go
 ```
+
+### Result-test generation
+
+This utility generates a Go test file for a specific Advent of Code challenge day and year, with provided answers for the first and second parts of the challenge, including example answers.
+
+#### Usage: 
+
+`go run utils/gen/gentest.go <year> <day> <first_example_answer> <second_example_answer> <first_answer> <second_answer>`
+
+#### Example of usage:
+
+`go run utils/gen/gentest.go 2023 01 123 456 12345 67890`
+
+The generated test file will be created in a directory named after the specified year, with the filename format `<day>\_test.go`. The test file will contain the provided answers embedded in a template.
