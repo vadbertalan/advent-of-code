@@ -5,7 +5,6 @@ package main
 import (
 	"aoc/utils"
 	"aoc/utils/coordinate"
-	"aoc/utils/direction"
 	"fmt"
 	"strconv"
 	"strings"
@@ -15,7 +14,6 @@ import (
 const aocDay int = 18
 
 type coord = coordinate.Coord
-type dir = direction.Direction
 
 type coordMap map[string]bool
 
@@ -57,7 +55,7 @@ func trav(c coord) (count int) {
 	return count
 }
 
-func first(lines []string) {
+func First(lines []string) string {
 	fmt.Println("--- First ---")
 
 	result := 0
@@ -121,12 +119,12 @@ func first(lines []string) {
 	// You may need to change these coords not to to get stack overflow (for ex in case of .exin2 input)
 	inside := trav(coord{Row: 1, Col: 1})
 
-	fmt.Println(result + inside)
+	return fmt.Sprint(result + inside)
 }
 
 // Your puzzle answer was 40131.
 
-func second(lines []string) {
+func Second(lines []string) string {
 	fmt.Println("\n--- Second ---")
 
 	result := 0
@@ -193,7 +191,7 @@ func second(lines []string) {
 
 	// re-adding boundary count to the inner #'s
 	result = i + b
-	fmt.Println(result)
+	return fmt.Sprint(result)
 }
 
 // Your puzzle answer was 104454050898331.
@@ -208,9 +206,9 @@ func main() {
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
-	first(lines)
+	fmt.Println(First(lines))
 
-	second(lines)
+	fmt.Println(Second(lines))
 
 	programDuration := time.Since(startTime).Seconds()
 

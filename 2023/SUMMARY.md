@@ -21,4 +21,5 @@
 | 19  | X-M-A-S possibilities                | >24h                | tree, paths in tree, possibility calculation       | Aplenty      | medium, but time cons. |             |
 | 20  | Flip-flop and conjunctive modules    | after d25           | directed graph, lcm, input assumption, plantuml    |              | medium                 | Hint for p2 |
 | 21  | Help with remaining steps            | >72h                | BFS, flood fill, math, rhombus, input assumption   |              | very hard              | Hint        |
+| 23  | Help with remaining steps            | WIP on branch `2023-day22-wip`                |    |              | very hard              |         |
 | 25  | Disconnect graph                     | >24h                | BFS, edge occurrence counting, graph               |              | hard                   | Hint        |

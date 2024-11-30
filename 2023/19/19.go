@@ -36,7 +36,7 @@ type wf struct {
 // |  __/ (_| | |  | |_  | |
 // |_|   \__,_|_|   \__| |_|
 
-func first(lines []string) {
+func First(lines []string) string {
 	fmt.Println("--- First ---")
 
 	result := 0
@@ -157,7 +157,7 @@ func first(lines []string) {
 		}
 	}
 
-	fmt.Println(result)
+	return fmt.Sprintf("%d", result)
 }
 
 // 306276 too low for p1
@@ -237,7 +237,7 @@ func shrinkXmasRanges(xmasRanges *map[string][2]int, rng rng) {
 	}
 }
 
-func second(lines []string) {
+func Second(lines []string) string {
 	fmt.Println("\n--- Second ---")
 
 	result := 0
@@ -386,7 +386,7 @@ func second(lines []string) {
 		result += pathPoss
 	}
 
-	fmt.Println(result)
+	return fmt.Sprintf("%d", result)
 }
 
 // Good answer: 124831893423809
@@ -398,9 +398,9 @@ func main() {
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
-	first(lines)
+	fmt.Println(First(lines))
 
-	second(lines)
+	fmt.Println(Second(lines))
 
 	programDuration := time.Since(startTime).Seconds()
 

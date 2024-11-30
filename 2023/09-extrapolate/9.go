@@ -12,7 +12,7 @@ import (
 
 const aocDay int = 9
 
-func first(lines []string) {
+func First(lines []string) int {
 	fmt.Println("--- First ---")
 
 	result := 0
@@ -27,7 +27,7 @@ func first(lines []string) {
 
 		nrsToAdd := []int{nrs[len(nrs)-1]}
 		diffs := nrs
-		for true {
+		for {
 			newdiffs := make([]int, len(diffs)-1)
 			for i := 0; i < len(diffs)-1; i++ {
 				newdiffs[i] = diffs[i+1] - diffs[i]
@@ -47,10 +47,10 @@ func first(lines []string) {
 		result += sum
 	}
 
-	fmt.Println(result)
+	return result
 }
 
-func second(lines []string) {
+func Second(lines []string) int {
 	fmt.Println("\n--- Second ---")
 
 	result := 0
@@ -65,7 +65,7 @@ func second(lines []string) {
 
 		nrsToExt := []int{nrs[0]}
 		diffs := nrs
-		for true {
+		for {
 			newdiffs := make([]int, len(diffs)-1)
 			for i := 0; i < len(diffs)-1; i++ {
 				newdiffs[i] = diffs[i+1] - diffs[i]
@@ -85,7 +85,7 @@ func second(lines []string) {
 		result += diff
 	}
 
-	fmt.Println(result)
+	return result
 }
 
 // 228, wrong
@@ -97,9 +97,9 @@ func main() {
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
-	first(lines)
+	fmt.Println(First(lines))
 
-	second(lines)
+	fmt.Println(Second(lines))
 
 	programDuration := time.Since(startTime).Seconds()
 
