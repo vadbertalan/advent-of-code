@@ -14,6 +14,12 @@ import (
 
 const aocDay int = 2
 
+//  ____            _     _
+// |  _ \ __ _ _ __| |_  / |
+// | |_) / _` | '__| __| | |
+// |  __/ (_| | |  | |_  | |
+// |_|   \__,_|_|   \__| |_|
+
 func isSafe1(row []int) bool {
 	previous := -1
 	isIncreasing := true
@@ -53,12 +59,6 @@ func isSafe1(row []int) bool {
 	return false
 }
 
-//  ____            _     _
-// |  _ \ __ _ _ __| |_  / |
-// | |_) / _` | '__| __| | |
-// |  __/ (_| | |  | |_  | |
-// |_|   \__,_|_|   \__| |_|
-
 func First(lines []string) string {
 	fmt.Println("--- First ---")
 
@@ -81,6 +81,12 @@ func First(lines []string) string {
 }
 
 // correct 472, example 2
+
+//  ____            _     ____
+// |  _ \ __ _ _ __| |_  |___ \
+// | |_) / _` | '__| __|   __) |
+// |  __/ (_| | |  | |_   / __/
+// |_|   \__,_|_|   \__| |_____|
 
 func isTooFar(cell1, cell2 int) bool {
 	diff := math.Abs(float64(cell1 - cell2))
@@ -105,12 +111,6 @@ func isSafe3(row []int) (bool, bool, int) {
 
 	return restIsIncreasing, isSafe, cellZero
 }
-
-//  ____            _     ____
-// |  _ \ __ _ _ __| |_  |___ \
-// | |_) / _` | '__| __|   __) |
-// |  __/ (_| | |  | |_   / __/
-// |_|   \__,_|_|   \__| |_____|
 
 func Second(lines []string) string {
 	fmt.Println("--- Second ---")
