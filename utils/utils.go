@@ -29,6 +29,18 @@ func ReadLines(path string) (lines []string) {
 	return lines
 }
 
+func AppendLineToFile(path string, line string) {
+	f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	if _, err := f.WriteString(line + "\n"); err != nil {
+		panic(err)
+	}
+}
+
 // Converts input param strings array to an array of ints by parsing ints
 func ConvertToInts(strs []string) (ints []int) {
 	for _, strval := range strs {
@@ -55,7 +67,6 @@ func GetInputFileExt(inputFileCount int) string {
 	if inputFileCount > 1 {
 		for i := 0; i < inputFileCount-1; i++ {
 			a := fmt.Sprintf("e%d", i+2)
-			fmt.Println(a)
 			useExInputI := flag.Bool(a, false, fmt.Sprintf("Specify if you want to run the solution against example input number %d, which should be put in file `XX.exin%d`. By default the simpler example provided in the AoC problem description is used.", i+2, i+2))
 			useExPs = append(useExPs, useExInputI)
 		}
