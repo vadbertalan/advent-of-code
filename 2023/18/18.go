@@ -5,6 +5,7 @@ package main
 import (
 	"aoc/utils"
 	"aoc/utils/coordinate"
+	"aoc/utils/formulae"
 	"fmt"
 	"strconv"
 	"strings"
@@ -184,7 +185,7 @@ func Second(lines []string) string {
 
 	// Calculating area with Shoelace formulae https://en.wikipedia.org/wiki/Shoelace_formula
 	// See `Other formulas` section. Absolute value is needed because of the order of the vertices.
-	A := int(utils.CalcAreaShoelace(coords))
+	A := int(formulae.CalcAreaShoelace(coords))
 
 	// Pick's theorem https://en.wikipedia.org/wiki/Pick%27s_theorem
 	i := A - b/2 + 1

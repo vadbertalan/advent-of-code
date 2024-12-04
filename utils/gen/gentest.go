@@ -95,7 +95,7 @@ type Answers struct {
 // embedded in a template.
 func main() {
 	if len(os.Args) != 7 {
-		fmt.Println("Usage: gentest <year> <day> <first_example_answer> <first_example_answer> <first_answer> <second_answer>")
+		fmt.Println("Usage: gentest <year> <day> <first_example_answer> <second_example_answer> <first_answer> <second_answer>")
 		return
 	}
 
@@ -115,7 +115,6 @@ func main() {
 	}
 
 	yearDir := filepath.Join(year)
-	// yearDir := filepath.Join("..", "..", year)
 	dayDir := ""
 
 	dayInt, err := strconv.Atoi(day)

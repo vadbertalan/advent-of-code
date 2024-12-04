@@ -6,6 +6,7 @@ import (
 	"aoc/utils"
 	"aoc/utils/coordinate"
 	"aoc/utils/direction"
+	"aoc/utils/formulae"
 	"aoc/utils/matrix"
 	"fmt"
 	"strings"
@@ -208,7 +209,7 @@ func second(lines []string) {
 		currentPipeCoord = nextPipeCoord
 	}
 
-	A := utils.CalcAreaShoelace(polygonVertexes)
+	A := formulae.CalcAreaShoelace(polygonVertexes)
 
 	// fmt.Println(A)
 	// fmt.Println(len(boundaryCoords))

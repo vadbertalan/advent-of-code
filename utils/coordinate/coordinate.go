@@ -1,6 +1,7 @@
 package coordinate
 
 import (
+	"aoc/utils"
 	"aoc/utils/direction"
 	"fmt"
 	"math"
@@ -16,10 +17,14 @@ func (c Coord) IsEqual(c2 Coord) bool {
 
 func (oldCoord Coord) GetNewCoord(dir direction.Direction) Coord {
 	m := map[direction.Direction]([2]int){
-		direction.Up:    [2]int{-1, 0},
-		direction.Right: [2]int{0, 1},
-		direction.Down:  [2]int{1, 0},
-		direction.Left:  [2]int{0, -1},
+		direction.Up:        [2]int{-1, 0},
+		direction.UpRight:   [2]int{-1, 1},
+		direction.Right:     [2]int{0, 1},
+		direction.RightDown: [2]int{1, 1},
+		direction.Down:      [2]int{1, 0},
+		direction.DownLeft:  [2]int{1, -1},
+		direction.Left:      [2]int{0, -1},
+		direction.LeftUp:    [2]int{-1, -1},
 	}
 
 	rowAdd := m[dir][0]
@@ -110,4 +115,23 @@ func GetOffsetsArray(diagonal bool) []DirOffset {
 		dirOffsetsMap[direction.Down],
 		dirOffsetsMap[direction.Left],
 	}
+}
+
+func GetOnlyDiagonalOffsets() []DirOffset {
+	return []DirOffset{
+		dirOffsetsMap[direction.UpRight],
+		dirOffsetsMap[direction.RightDown],
+		dirOffsetsMap[direction.DownLeft],
+		dirOffsetsMap[direction.LeftUp],
+	}
+}
+
+func GetPerpendicularOffsets(dirOffset DirOffset) []DirOffset {
+	if !utils.Contains[DirOffset](GetOnlyDiagonalOffsets(), dirOffset) {
+		panic(fmt.Sprintf("Invalid direction, input must be diagonal direction %v", dirOffset))
+	}
+	if dirOffset.Dir == direction.UpRight || dirOffset.Dir == direction.DownLeft {
+		return []DirOffset{dirOffsetsMap[direction.LeftUp], dirOffsetsMap[direction.RightDown]}
+	}
+	return []DirOffset{dirOffsetsMap[direction.UpRight], dirOffsetsMap[direction.DownLeft]}
 }
