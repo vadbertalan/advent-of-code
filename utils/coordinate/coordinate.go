@@ -59,6 +59,10 @@ func (cm *CoordMap) Add(c Coord) {
 	(*cm)[fmt.Sprintf("%d-%d", c.Row, c.Col)] = true
 }
 
+func (cm *CoordMap) RemoveCoord(c Coord) {
+	delete(*cm, fmt.Sprintf("%d-%d", c.Row, c.Col))
+}
+
 func (cm *CoordMap) GetAllCoordValues() []Coord {
 	coords := []Coord{}
 	for k := range *cm {
@@ -67,6 +71,61 @@ func (cm *CoordMap) GetAllCoordValues() []Coord {
 		coords = append(coords, Coord{Row: r, Col: c})
 	}
 	return coords
+}
+
+func (cm *CoordMap) Clear() {
+	*cm = make(CoordMap)
+}
+
+//   _______                  _ __  __
+//  |__   __|                | |  \/  |
+//     | |_ __ __ ___   _____| | \  / | __ _ _ __
+//     | | '__/ _` \ \ / / _ \ | |\/| |/ _` | '_ \
+//     | | | | (_| |\ V /  __/ | |  | | (_| | |_) |
+//     |_|_|  \__,_| \_/ \___|_|_|  |_|\__,_| .__/
+//                                          | |
+//                                          |_|
+
+type TravelMap map[string]bool
+
+func getDirString(d direction.Direction) string {
+	switch d {
+	case direction.Up:
+		return "U"
+	case direction.UpRight:
+		return "UR"
+	case direction.Right:
+		return "R"
+	case direction.RightDown:
+		return "RD"
+	case direction.Down:
+		return "D"
+	case direction.DownLeft:
+		return "DL"
+	case direction.Left:
+		return "L"
+	case direction.LeftUp:
+		return "LU"
+	}
+	panic(fmt.Sprintf("Invalid direction %v", d))
+}
+
+func (cm TravelMap) ContainsRowColDir(row, col int, dir direction.Direction) bool {
+	_, ok := cm[fmt.Sprintf("%d-%d-%s", row, col, getDirString(dir))]
+	return ok
+}
+
+func (cm TravelMap) ContainsCoordAndDir(c Coord, dir direction.Direction) bool {
+	_, ok := cm[fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(dir))]
+	return ok
+}
+
+func (cm *TravelMap) Add(c Coord, d direction.Direction) {
+	(*cm)[fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(d))] = true
+}
+
+func (cm *TravelMap) Clear() {
+	*cm = make(TravelMap)
 }
 
 //  ____  _       ___   __  __          _
@@ -130,8 +189,36 @@ func GetPerpendicularOffsets(dirOffset DirOffset) []DirOffset {
 	if !utils.Contains[DirOffset](GetOnlyDiagonalOffsets(), dirOffset) {
 		panic(fmt.Sprintf("Invalid direction, input must be diagonal direction %v", dirOffset))
 	}
+
 	if dirOffset.Dir == direction.UpRight || dirOffset.Dir == direction.DownLeft {
 		return []DirOffset{dirOffsetsMap[direction.LeftUp], dirOffsetsMap[direction.RightDown]}
 	}
 	return []DirOffset{dirOffsetsMap[direction.UpRight], dirOffsetsMap[direction.DownLeft]}
+}
+
+func GetClockwise90DegreeNeighborOffset(dirOffset DirOffset) DirOffset {
+	if dirOffset.Dir == direction.Up {
+		return dirOffsetsMap[direction.Right]
+	}
+	if dirOffset.Dir == direction.Right {
+		return dirOffsetsMap[direction.Down]
+	}
+	if dirOffset.Dir == direction.Down {
+		return dirOffsetsMap[direction.Left]
+	}
+	if dirOffset.Dir == direction.Left {
+		return dirOffsetsMap[direction.Up]
+	}
+
+	if dirOffset.Dir == direction.UpRight {
+		return dirOffsetsMap[direction.RightDown]
+	}
+	if dirOffset.Dir == direction.RightDown {
+		return dirOffsetsMap[direction.DownLeft]
+	}
+	if dirOffset.Dir == direction.DownLeft {
+		return dirOffsetsMap[direction.LeftUp]
+	}
+	// dirOffset.Dir == direction.LeftUp
+	return dirOffsetsMap[direction.UpRight]
 }

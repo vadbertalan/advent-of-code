@@ -22,8 +22,6 @@ type mat = matrix.Matrix[string]
 // |_|   \__,_|_|   \__| |_|
 
 func First(lines []string) (strigifiedResult string) {
-	fmt.Println("--- First ---")
-
 	result := 0
 
 	for _, line := range lines {
@@ -42,8 +40,6 @@ func First(lines []string) (strigifiedResult string) {
 // |_|   \__,_|_|   \__| |_____|
 
 func Second(lines []string) (strigifiedResult string) {
-	fmt.Println("\n--- Second ---")
-
 	result := 0
 
 	strigifiedResult = fmt.Sprint(result)
@@ -58,9 +54,11 @@ func DYNmain() {
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
 	result := First(lines)
+	fmt.Println("--- First ---")
 	fmt.Println(result)
 
 	result = Second(lines)
+	fmt.Println("\n--- Second ---")
 	fmt.Println(result)
 
 	programDuration := time.Since(startTime).Seconds()

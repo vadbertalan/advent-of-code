@@ -37,7 +37,7 @@ func TestFirst(t *testing.T) {
 	}
 }
 
-func TestFirstExample(t *testing.T) {
+func TestFirstWithExampleInput(t *testing.T) {
 	expected := "{{.FirstAnswerExample}}"
 	
 	lines := getExampleInputLines()

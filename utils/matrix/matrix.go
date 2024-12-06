@@ -25,6 +25,15 @@ func (m Matrix[T]) Clone() Matrix[T] {
 	return mClone
 }
 
+func (m Matrix[T]) PrintWithSmallSpacing() {
+	for i := 0; i < m.RowCount; i++ {
+		for j := 0; j < m.ColumnCount; j++ {
+			fmt.Printf("%2v", m.Values[i][j])
+		}
+		fmt.Println()
+	}
+}
+
 func (m Matrix[T]) PrintWithSpacing() {
 	for i := 0; i < m.RowCount; i++ {
 		for j := 0; j < m.ColumnCount; j++ {
@@ -51,6 +60,24 @@ func (m Matrix[T]) Println() {
 func (m Matrix[T]) PrintlnWithSpacing() {
 	m.PrintWithSpacing()
 	fmt.Println()
+}
+
+func (m Matrix[T]) PrintlnWithSmallSpacing() {
+	m.PrintWithSmallSpacing()
+	fmt.Println()
+}
+
+func (m Matrix[T]) PrintlnWithOverride(test func(i, j int, value T) bool, override string) {
+	for i := 0; i < m.RowCount; i++ {
+		for j := 0; j < m.ColumnCount; j++ {
+			if test(i, j, m.Values[i][j]) {
+				fmt.Printf("%2v", override)
+			} else {
+				fmt.Printf("%2v", m.Values[i][j])
+			}
+		}
+		fmt.Println()
+	}
 }
 
 func (m Matrix[T]) IsValidCoord(c coord) bool {
