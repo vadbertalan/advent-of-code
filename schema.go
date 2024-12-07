@@ -53,12 +53,12 @@ func DYNmain() {
 
 	lines := utils.ReadLines(fmt.Sprintf("%d.%s", aocDay, inputFileExtension))
 
-	result := First(lines)
 	fmt.Println("--- First ---")
+	result := First(lines)
 	fmt.Println(result)
 
-	result = Second(lines)
 	fmt.Println("\n--- Second ---")
+	result = Second(lines)
 	fmt.Println(result)
 
 	programDuration := time.Since(startTime).Seconds()
