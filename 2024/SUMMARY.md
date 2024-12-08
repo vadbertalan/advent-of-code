@@ -7,7 +7,7 @@
 | 05  | Correct incorrect pages   | 34 min              | bubble sort                     | -             | very easy  | No        |
 | 06  | Guard path prediction     | 7:17                | matrix, recursive, backtracking | -             | hard       | No        |
 | 07  | \+ \* \|\| operators      | 1:04                | backtrack, recursive            | Concatenation | very easy  | No        |
-| 08  |                           |                     |                                 | -             |            | No        |
+| 08  | Line antinodes            | 1:25                | line equation                   | -             | easy       | No        |
 | 09  |                           |                     |                                 | -             |            | No        |
 | 10  |                           |                     |                                 | -             |            | No        |
 | 11  |                           |                     |                                 | -             |            | No        |
