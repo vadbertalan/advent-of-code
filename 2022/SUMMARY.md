@@ -14,7 +14,7 @@
 | 12  | Hill climbing shortest path    | 19:44               | dijkstra (second very slow and lucky?)  |
 | 13  | Pair, list comparisons         | 01:27               | -                                       |
 | 14  | Cave filling with sand         | 02:53               | -                                       |
-| 15  | Sensor - beacon                | 12:17               | Kinda backtract (not optimal but w/e)   |
+| 15  | Sensor - beacon                | 12:17               | Kinda backtrack (not optimal but w/e)   |
 | 16  | Elephants + valve opening      | >24h                | guessing and bcktr (good: min/max cut?) |
 | 17  |                                |                     | -                                       |
 | 18  | Lava droplets - cubes          | >24h                | "Building walls" - DFS                  |
