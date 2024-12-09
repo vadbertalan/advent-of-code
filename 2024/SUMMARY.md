@@ -8,7 +8,7 @@
 | 06  | Guard path prediction     | 7:17                | matrix, recursive, backtracking | -             | hard       | No        |
 | 07  | \+ \* \|\| operators      | 1:04                | backtrack, recursive            | Concatenation | very easy  | No        |
 | 08  | Line antinodes            | 1:25                | line equation                   | -             | easy       | No        |
-| 09  |                           |                     |                                 | -             |            | No        |
+| 09  | Computer memory disk map  | 5:17                | pointers, double linked list    | Amphipoda     | medium     | No        |
 | 10  |                           |                     |                                 | -             |            | No        |
 | 11  |                           |                     |                                 | -             |            | No        |
 | 12  |                           |                     |                                 | -             |            | No        |

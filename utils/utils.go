@@ -28,6 +28,19 @@ func ReadLines(path string) (lines []string) {
 	return lines
 }
 
+func WriteToFile(path string, content string) {
+	f, err := os.Create(path)
+	if err != nil {
+		panic(err)
+	}
+
+	defer f.Close()
+
+	if _, err := f.WriteString(content); err != nil {
+		panic(err)
+	}
+}
+
 func AppendLineToFile(path string, line string) {
 	f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
