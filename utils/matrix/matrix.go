@@ -143,6 +143,10 @@ func (m Matrix[T]) GetFirstValidNeighbor(c coord, test func(val T, neighborCoord
 }
 
 func ParseStringMatrix(lines []string) Matrix[string] {
+	if len(lines) == 0 {
+		return Matrix[string]{}
+	}
+
 	m := Matrix[string]{
 		Values:      make([][]string, len(lines)),
 		RowCount:    len(lines),
@@ -157,4 +161,97 @@ func ParseStringMatrix(lines []string) Matrix[string] {
 	}
 
 	return m
+}
+
+func ParseDigitMatrix(lines []string) Matrix[int] {
+	if len(lines) == 0 {
+		return Matrix[int]{}
+	}
+
+	m := Matrix[int]{
+		Values:      make([][]int, len(lines)),
+		RowCount:    len(lines),
+		ColumnCount: len(lines[0]),
+	}
+
+	for row, line := range lines {
+		m.Values[row] = make([]int, len(line))
+		for col, c := range line {
+			m.Values[row][col] = int(c - '0')
+		}
+	}
+
+	return m
+}
+
+func (m Matrix[T]) GetAllCoordsWhich(test func(value T) bool) (coords []coord) {
+	for i := 0; i < m.RowCount; i++ {
+		for j := 0; j < m.ColumnCount; j++ {
+			if test(m.Values[i][j]) {
+				coords = append(coords, coord{Row: i, Col: j})
+			}
+		}
+	}
+	return coords
+}
+
+func (m Matrix[T]) IsPathBetween(currentCoord coordinate.Coord, endCoord coordinate.Coord, test func(currentCoord, nextCoord coordinate.Coord, currentValue, nextValue T) bool) bool {
+	seenCoordMap := make(coordinate.CoordMap)
+	return m.isPathBetweenInternal(currentCoord, endCoord, seenCoordMap, test)
+}
+
+func (m Matrix[T]) isPathBetweenInternal(currentCoord coordinate.Coord, endCoord coordinate.Coord, seenCoordMap coordinate.CoordMap, test func(currentCoord, nextCoord coordinate.Coord, currentValue, nextValue T) bool) bool {
+	if currentCoord == endCoord {
+		return true
+	}
+
+	seenCoordMap.Add(currentCoord)
+
+	dirOffsets := coordinate.GetOffsetsArray(false)
+	for _, dirOffset := range dirOffsets {
+		nextCoord := currentCoord.GetNewCoord(dirOffset.Dir)
+
+		if !m.IsValidCoord(nextCoord) {
+			continue
+		}
+
+		if !seenCoordMap.ContainsCoord(nextCoord) &&
+			test(currentCoord, nextCoord, m.At(currentCoord), m.At(nextCoord)) {
+			if m.isPathBetweenInternal(nextCoord, endCoord, seenCoordMap, test) {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+func (m Matrix[T]) CountPathsBetween(currentCoord coordinate.Coord, endCoord coordinate.Coord, test func(currentCoord, nextCoord coordinate.Coord, currentValue, nextValue T) bool) int {
+	seenCoordMap := make(coordinate.CoordMap)
+	return m.countPathsBetweenInternal(currentCoord, endCoord, seenCoordMap, test)
+}
+
+func (m Matrix[T]) countPathsBetweenInternal(currentCoord coord, endCoord coord, seenCoordMap coordinate.CoordMap, test func(currentCoord, nextCoord coordinate.Coord, currentValue, nextValue T) bool) int {
+	if currentCoord == endCoord {
+		return 1
+	}
+
+	seenCoordMap.Add(currentCoord)
+
+	count := 0
+	dirOffsets := coordinate.GetOffsetsArray(false)
+	for _, dirOffset := range dirOffsets {
+		nextCoord := currentCoord.GetNewCoord(dirOffset.Dir)
+
+		if !m.IsValidCoord(nextCoord) {
+			continue
+		}
+
+		if !seenCoordMap.ContainsCoord(nextCoord) &&
+			test(currentCoord, nextCoord, m.At(currentCoord), m.At(nextCoord)) {
+			count += m.countPathsBetweenInternal(nextCoord, endCoord, seenCoordMap.Copy(), test)
+		}
+	}
+
+	return count
 }

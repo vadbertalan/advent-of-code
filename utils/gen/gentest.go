@@ -59,7 +59,7 @@ func TestSecond(t *testing.T) {
 	}
 }
 
-func TestSecondExample(t *testing.T) {
+func TestSecondWithExampleInput(t *testing.T) {
 	expected := "{{.SecondAnswerExample}}"
 	
 	lines := getExampleInputLines()

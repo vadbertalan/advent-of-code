@@ -77,6 +77,14 @@ func (cm *CoordMap) Clear() {
 	*cm = make(CoordMap)
 }
 
+func (cm CoordMap) Copy() CoordMap {
+	newMap := make(CoordMap)
+	for k := range cm {
+		newMap[k] = true
+	}
+	return newMap
+}
+
 //   _______                  _ __  __
 //  |__   __|                | |  \/  |
 //     | |_ __ __ ___   _____| | \  / | __ _ _ __
