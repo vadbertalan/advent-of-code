@@ -10,7 +10,7 @@
 | 08  | Line antides              | 1:25                | line equation                   | -               | easy       |           |
 | 09  | Computer memory disk map  | 5:17                | pointers, double linked list    | Amphipoda       | medium     |           |
 | 10  | Trailhead 0->9 paths      | 1:07                | matrix, dfs, paths              | Topographic map | easy       |           |
-| 11  |                           |                     |                                 | -               |            |           |
+| 11  | Blink and stones change   | 29 min              | recursive, dp memory            | -               | very easy  |           |
 | 12  |                           |                     |                                 | -               |            |           |
 | 13  |                           |                     |                                 | -               |            |           |
 | 14  |                           |                     |                                 | -               |            |           |
