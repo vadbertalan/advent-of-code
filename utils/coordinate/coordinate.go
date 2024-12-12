@@ -204,6 +204,20 @@ func GetPerpendicularOffsets(dirOffset DirOffset) []DirOffset {
 	return []DirOffset{dirOffsetsMap[direction.UpRight], dirOffsetsMap[direction.DownLeft]}
 }
 
+func GetCounterClockwise90DegreeNeighborOffset(dirOffset DirOffset) DirOffset {
+	if dirOffset.Dir == direction.Up {
+		return dirOffsetsMap[direction.Left]
+	}
+	if dirOffset.Dir == direction.Right {
+		return dirOffsetsMap[direction.Up]
+	}
+	if dirOffset.Dir == direction.Down {
+		return dirOffsetsMap[direction.Right]
+	}
+	// dirOffset.Dir == direction.Left
+	return dirOffsetsMap[direction.Down]
+}
+
 func GetClockwise90DegreeNeighborOffset(dirOffset DirOffset) DirOffset {
 	if dirOffset.Dir == direction.Up {
 		return dirOffsetsMap[direction.Right]

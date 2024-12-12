@@ -11,7 +11,7 @@
 | 09  | Computer memory disk map  | 5:17                | pointers, double linked list    | Amphipoda       | medium     |           |
 | 10  | Trailhead 0->9 paths      | 1:07                | matrix, dfs, paths              | Topographic map | easy       |           |
 | 11  | Blink and stones change   | 29 min              | recursive, dp memory            | -               | very easy  |           |
-| 12  |                           |                     |                                 | -               |            |           |
+| 12  | Calc. fence               | 1:27                | matrix, recursive, fLood alg.   | -               | medium     |           |
 | 13  |                           |                     |                                 | -               |            |           |
 | 14  |                           |                     |                                 | -               |            |           |
 | 15  |                           |                     |                                 | -               |            |           |
