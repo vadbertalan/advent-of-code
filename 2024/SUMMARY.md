@@ -12,7 +12,7 @@
 | 10  | Trailhead 0->9 paths      | 1:07                | matrix, dfs, paths              | Topographic map | easy       |           |
 | 11  | Blink and stones change   | 29 min              | recursive, dp memory            | -               | very easy  |           |
 | 12  | Calc. fence               | 1:27                | matrix, recursive, fLood alg.   | -               | medium     |           |
-| 13  |                           |                     |                                 | -               |            |           |
+| 13  | Claw machine prizes       | 1:48 (started late) | second grade equation, bigint   | -               | easy       |           |
 | 14  |                           |                     |                                 | -               |            |           |
 | 15  |                           |                     |                                 | -               |            |           |
 | 16  |                           |                     |                                 | -               |            |           |
