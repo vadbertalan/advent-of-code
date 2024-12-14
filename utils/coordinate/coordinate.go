@@ -5,6 +5,7 @@ import (
 	"aoc/utils/direction"
 	"fmt"
 	"math"
+	"strconv"
 )
 
 type Coord struct {
@@ -243,4 +244,14 @@ func GetClockwise90DegreeNeighborOffset(dirOffset DirOffset) DirOffset {
 	}
 	// dirOffset.Dir == direction.LeftUp
 	return dirOffsetsMap[direction.UpRight]
+}
+
+func ParseCoordStr(str, separator string) Coord {
+	i, j := utils.SplitIn2(str, separator)
+	row, errRow := strconv.Atoi(i)
+	col, errCol := strconv.Atoi(j)
+	if errRow != nil || errCol != nil {
+		panic(fmt.Sprintf("Invalid input %s", str))
+	}
+	return Coord{Row: row, Col: col}
 }
