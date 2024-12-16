@@ -1,2 +1,4 @@
+github.com/rameshputalapattu/heapq v0.0.1 h1:qEwzl2syzD959JyUEWQuo4sGp7qbUIXAmPo/pb9WLo8=
+github.com/rameshputalapattu/heapq v0.0.1/go.mod h1:59Zt/xeCBMULGs8J+UvaJj1LdECT+t3+bjIJYCfNK+w=
 golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb h1:c0vyKkb6yr3KR7jEfJaOSv4lG7xPkbN6r52aJz1d8a8=
 golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb/go.mod h1:iRJReGqOEeBhDZGkGbynYwcHlctCvnjTYIamk7uXpHI=

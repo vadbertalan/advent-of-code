@@ -15,7 +15,7 @@
 | 13  | Claw machine prizes         | 1:48 (started late)  | second grade equation, bigint              | -               | easy       |           |
 | 14  | Robots patrolling around WC | 16:36 (started late) | matrix simulation, math function           | -               | medium     |           |
 | 15  | Robots pushing              | 19:34 (started late) | matrix simulation, recursive, matrix clone | -               | medium     | Hint      |
-| 16  |                             |                      |                                            | -               |            |           |
+| 16  | Reindeer olympics seats     | 08:15                | matrix, dijkstra, all best paths           | -               | medium     |           |
 | 17  |                             |                      |                                            | -               |            |           |
 | 18  |                             |                      |                                            | -               |            |           |
 | 19  |                             |                      |                                            | -               |            |           |

@@ -133,8 +133,49 @@ func (cm *TravelMap) Add(c Coord, d direction.Direction) {
 	(*cm)[fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(d))] = true
 }
 
+func (cm *TravelMap) RemoveCoordAndDir(c Coord, d direction.Direction) {
+	delete(*cm, fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(d)))
+}
+
 func (cm *TravelMap) Clear() {
 	*cm = make(TravelMap)
+}
+
+//   _______                  _ _____  _       _____          _   __  __
+//  |__   __|                | |  __ \(_)     / ____|        | | |  \/  |
+//     | |_ __ __ ___   _____| | |  | |_ _ __| |     ___  ___| |_| \  / | __ _ _ __
+//     | | '__/ _` \ \ / / _ \ | |  | | | '__| |    / _ \/ __| __| |\/| |/ _` | '_ \
+//     | | | | (_| |\ V /  __/ | |__| | | |  | |___| (_) \__ \ |_| |  | | (_| | |_) |
+//     |_|_|  \__,_| \_/ \___|_|_____/|_|_|   \_____\___/|___/\__|_|  |_|\__,_| .__/
+//                                                                            | |
+//                                                                            |_|
+
+type TravelDirCostMap map[string]int
+
+func (cm TravelDirCostMap) ContainsRowColDirCost(row, col int, dir direction.Direction) bool {
+	_, ok := cm[fmt.Sprintf("%d-%d-%s", row, col, getDirString(dir))]
+	return ok
+}
+
+func (cm TravelDirCostMap) ContainsCoordDirCost(c Coord, dir direction.Direction) bool {
+	_, ok := cm[fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(dir))]
+	return ok
+}
+
+func (cm *TravelDirCostMap) Add(c Coord, d direction.Direction, cost int) {
+	(*cm)[fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(d))] = cost
+}
+
+func (cm *TravelDirCostMap) RemoveCoordDirCost(c Coord, d direction.Direction, cost int) {
+	delete(*cm, fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(d)))
+}
+
+func (cm TravelDirCostMap) Get(c Coord, d direction.Direction) int {
+	return cm[fmt.Sprintf("%d-%d-%s", c.Row, c.Col, getDirString(d))]
+}
+
+func (cm *TravelDirCostMap) Clear() {
+	*cm = make(TravelDirCostMap)
 }
 
 //  ____  _       ___   __  __          _
@@ -244,6 +285,34 @@ func GetClockwise90DegreeNeighborOffset(dirOffset DirOffset) DirOffset {
 	}
 	// dirOffset.Dir == direction.LeftUp
 	return dirOffsetsMap[direction.UpRight]
+}
+
+func GetClockwise90DegreeDirection(dir direction.Direction) direction.Direction {
+	if dir == direction.Up {
+		return direction.Right
+	}
+	if dir == direction.Right {
+		return direction.Down
+	}
+	if dir == direction.Down {
+		return direction.Left
+	}
+	// dir == direction.Left
+	return direction.Up
+}
+
+func GetCounterClockwise90DegreeDirection(dir direction.Direction) direction.Direction {
+	if dir == direction.Up {
+		return direction.Left
+	}
+	if dir == direction.Left {
+		return direction.Down
+	}
+	if dir == direction.Down {
+		return direction.Right
+	}
+	// dir == direction.Right
+	return direction.Up
 }
 
 func ParseCoordStr(str, separator string) Coord {

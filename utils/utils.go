@@ -293,3 +293,9 @@ func ShallowCopyMap[K comparable, V any](m map[K]V) (newMap map[K]V) {
 	}
 	return newMap
 }
+
+func CloneArray[T any](arr []T) []T {
+	newArr := make([]T, len(arr))
+	copy(newArr, arr)
+	return newArr
+}

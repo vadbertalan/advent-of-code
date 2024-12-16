@@ -1,6 +1,7 @@
 package coordinate
 
 import (
+	"aoc/utils/direction"
 	"testing"
 )
 
@@ -32,4 +33,42 @@ func TestParseCoordStrInvalidInput(t *testing.T) {
 	}()
 
 	ParseCoordStr("invalid-input", "-")
+}
+
+func TestGetCounterClockwise90DegreeDirection(t *testing.T) {
+	tests := []struct {
+		input    direction.Direction
+		expected direction.Direction
+	}{
+		{direction.Up, direction.Left},
+		{direction.Left, direction.Down},
+		{direction.Down, direction.Right},
+		{direction.Right, direction.Up},
+	}
+
+	for _, test := range tests {
+		result := GetCounterClockwise90DegreeDirection(test.input)
+		if result != test.expected {
+			t.Errorf("GetCounterClockwise90DegreeDirection(%v) = %v; want %v", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestGetClockwise90DegreeDirection(t *testing.T) {
+	tests := []struct {
+		input    direction.Direction
+		expected direction.Direction
+	}{
+		{direction.Up, direction.Right},
+		{direction.Right, direction.Down},
+		{direction.Down, direction.Left},
+		{direction.Left, direction.Up},
+	}
+
+	for _, test := range tests {
+		result := GetClockwise90DegreeDirection(test.input)
+		if result != test.expected {
+			t.Errorf("GetClockwise90DegreeDirection(%v) = %v; want %v", test.input, result, test.expected)
+		}
+	}
 }
