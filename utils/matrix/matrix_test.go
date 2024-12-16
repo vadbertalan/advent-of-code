@@ -1583,6 +1583,108 @@ func TestPrintlnWithOverride(t *testing.T) {
 	}
 }
 
+func TestParseStringMatrixAndGetStartingPoint(t *testing.T) {
+	tests := []struct {
+		name      string
+		lines     []string
+		test      func(value string) bool
+		want      Matrix[string]
+		wantCoord *coordinate.Coord
+	}{
+		{
+			name:      "empty input",
+			lines:     []string{},
+			test:      func(value string) bool { return value == "S" },
+			want:      Matrix[string]{},
+			wantCoord: nil,
+		},
+		{
+			name: "single line with starting point",
+			lines: []string{
+				"abcS",
+			},
+			test: func(value string) bool { return value == "S" },
+			want: Matrix[string]{
+				Values: [][]string{
+					{"a", "b", "c", "S"},
+				},
+				RowCount:    1,
+				ColumnCount: 4,
+			},
+			wantCoord: &coordinate.Coord{Row: 0, Col: 3},
+		},
+		{
+			name: "multiple lines with starting point",
+			lines: []string{
+				"abc",
+				"def",
+				"gSh",
+			},
+			test: func(value string) bool { return value == "S" },
+			want: Matrix[string]{
+				Values: [][]string{
+					{"a", "b", "c"},
+					{"d", "e", "f"},
+					{"g", "S", "h"},
+				},
+				RowCount:    3,
+				ColumnCount: 3,
+			},
+			wantCoord: &coordinate.Coord{Row: 2, Col: 1},
+		},
+		{
+			name: "lines with different lengths and starting point",
+			lines: []string{
+				"abc",
+				"deS",
+				"fghi",
+			},
+			test: func(value string) bool { return value == "S" },
+			want: Matrix[string]{
+				Values: [][]string{
+					{"a", "b", "c"},
+					{"d", "e", "S"},
+					{"f", "g", "h", "i"},
+				},
+				RowCount:    3,
+				ColumnCount: 3,
+			},
+			wantCoord: &coordinate.Coord{Row: 1, Col: 2},
+		},
+		{
+			name: "no starting point",
+			lines: []string{
+				"abc",
+				"def",
+				"ghi",
+			},
+			test: func(value string) bool { return value == "S" },
+			want: Matrix[string]{
+				Values: [][]string{
+					{"a", "b", "c"},
+					{"d", "e", "f"},
+					{"g", "h", "i"},
+				},
+				RowCount:    3,
+				ColumnCount: 3,
+			},
+			wantCoord: nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, gotCoord := ParseStringMatrixAndGetStartingPoint(tt.lines, tt.test)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ParseStringMatrixAndGetStartingPoint() got = %v, want %v", got, tt.want)
+			}
+			if !reflect.DeepEqual(gotCoord, tt.wantCoord) {
+				t.Errorf("ParseStringMatrixAndGetStartingPoint() gotCoord = %v, want %v", gotCoord, tt.wantCoord)
+			}
+		})
+	}
+}
+
 // captureOutput captures the output of a function that writes to stdout.
 func captureOutput(f func()) string {
 	old := os.Stdout

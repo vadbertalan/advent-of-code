@@ -163,6 +163,39 @@ func ParseStringMatrix(lines []string) Matrix[string] {
 	return m
 }
 
+func ParseStringMatrixAndGetStartingPoint(lines []string, test func(value string) bool) (m Matrix[string], coord *coordinate.Coord) {
+	if len(lines) == 0 {
+		return Matrix[string]{}, nil
+	}
+
+	m = Matrix[string]{
+		Values:      make([][]string, len(lines)),
+		RowCount:    len(lines),
+		ColumnCount: len(lines[0]),
+	}
+
+	for row, line := range lines {
+		m.Values[row] = make([]string, len(line))
+		for col, c := range line {
+			m.Values[row][col] = string(c)
+
+			if test(string(c)) {
+				coord = &coordinate.Coord{Row: row, Col: col}
+			}
+		}
+	}
+
+	return m, coord
+}
+
+func (m Matrix[T]) ForEach(test func(i, j int, value T)) {
+	for i := 0; i < m.RowCount; i++ {
+		for j := 0; j < m.ColumnCount; j++ {
+			test(i, j, m.Values[i][j])
+		}
+	}
+}
+
 func ParseDigitMatrix(lines []string) Matrix[int] {
 	if len(lines) == 0 {
 		return Matrix[int]{}
