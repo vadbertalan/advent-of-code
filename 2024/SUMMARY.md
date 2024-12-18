@@ -17,7 +17,7 @@
 | 15  | Robots pushing              | 19:34 (started late) | matrix simulation, recursive, matrix clone | -               | medium     | Hint      |
 | 16  | Reindeer olympics seats     | 08:15                | matrix, dijkstra, all best paths           | -               | medium     |           |
 | 17  |                             |                      |                                            | -               |            |           |
-| 18  |                             |                      |                                            | -               |            |           |
+| 18  | Byte obstacles in memory    | 1:33                 | dijkstra                                   | -               | easy       |           |
 | 19  |                             |                      |                                            | -               |            |           |
 | 20  |                             |                      |                                            | -               |            |           |
 | 21  |                             |                      |                                            | -               |            |           |
