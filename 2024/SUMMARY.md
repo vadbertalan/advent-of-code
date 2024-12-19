@@ -18,7 +18,7 @@
 | 16  | Reindeer olympics seats     | 08:15                | matrix, dijkstra, all best paths           | -               | medium     |           |
 | 17  |                             |                      |                                            | -               |            |           |
 | 18  | Byte obstacles in memory    | 1:33                 | dijkstra                                   | -               | easy       |           |
-| 19  |                             |                      |                                            | -               |            |           |
+| 19  | Towels                      | 0:52                 | recursive, dp, cache                       | onsen           | easy       |           |
 | 20  |                             |                      |                                            | -               |            |           |
 | 21  |                             |                      |                                            | -               |            |           |
 | 22  |                             |                      |                                            | -               |            |           |
