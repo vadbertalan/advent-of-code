@@ -21,7 +21,7 @@
 | 19  | Towels                      | 0:52                 | recursive, dp, cache                       | onsen           | easy       |           |
 | 20  |                             |                      |                                            | -               |            |           |
 | 21  |                             |                      |                                            | -               |            |           |
-| 22  |                             |                      |                                            | -               |            |           |
+| 22  | Bananas for hiding spots    | 7:07 (started late)  | set, hashmap, xor, modulo                  | pseudorandom    | easy       |           |
 | 23  |                             |                      |                                            | -               |            |           |
 | 24  |                             |                      |                                            | -               |            |           |
 | 25  |                             |                      |                                            | -               |            |           |
