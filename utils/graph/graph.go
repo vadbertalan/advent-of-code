@@ -39,6 +39,14 @@ func (g *Graph[T]) AddNode(node string, value *T) {
 	}
 }
 
+func (g *Graph[T]) GetNodes() []string {
+	nodes := []string{}
+	for node := range g.Neighbors {
+		nodes = append(nodes, node)
+	}
+	return nodes
+}
+
 func (g *Graph[T]) GetEdges() (edges [][2]string) {
 	edgeSet := collections.NewSet[string]()
 	for node, neighbors := range g.Neighbors {
