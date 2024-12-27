@@ -23,5 +23,5 @@
 | 21  |                                  |                      |                                            | -                |            |           |
 | 22  | Bananas for hiding spots         | 7:07 (started late)  | set, hashmap, xor, modulo                  | pseudorandom     | easy       |           |
 | 23  | LAN party - computer connections | >24 (needed ~1.5h)   | graph, longest circle in graph, circles    | LAN party        | medium     |           |
-| 24  |                                  |                      |                                            | -                |            |           |
+| 24  | Addition logic gates & wires     | >24 (needed 1d)      | OOP, pointers, graphviz, visualization     | -                | very hard  |           |
 | 25  | Key - lock pair-fInding          | 4:32 (needed 15m)    | matrix                                     | Pin tumbler lock | very easy  |           |
