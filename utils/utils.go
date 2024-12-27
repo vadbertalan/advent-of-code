@@ -191,6 +191,13 @@ func Filter[T any](ss []T, isRemaining func(T) bool) (ret []T) {
 	return
 }
 
+func Map[T any, U any](ss []T, transform func(T) U) (ret []U) {
+	for _, s := range ss {
+		ret = append(ret, transform(s))
+	}
+	return
+}
+
 func Every[T any](ss []T, isValid func(T) bool) bool {
 	for _, s := range ss {
 		if !isValid(s) {
@@ -198,6 +205,15 @@ func Every[T any](ss []T, isValid func(T) bool) bool {
 		}
 	}
 	return true
+}
+
+func Some[T any](ss []T, isValid func(T) bool) bool {
+	for _, s := range ss {
+		if isValid(s) {
+			return true
+		}
+	}
+	return false
 }
 
 // Greatest Common Divisor (GCD) - Euclidean algorithm
