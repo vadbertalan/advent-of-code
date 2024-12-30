@@ -2,6 +2,7 @@ package utils
 
 import (
 	"reflect"
+	"slices"
 	"testing"
 )
 
@@ -66,6 +67,81 @@ func TestMap(t *testing.T) {
 		}
 		if !reflect.DeepEqual(result, test.expected) {
 			t.Errorf("Map(%v, transform) = %v; want %v", test.input, result, test.expected)
+		}
+	}
+}
+func TestAbs(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected int
+	}{
+		{input: 5, expected: 5},
+		{input: -5, expected: 5},
+		{input: 0, expected: 0},
+		{input: -123456, expected: 123456},
+		{input: 123456, expected: 123456},
+	}
+
+	for _, test := range tests {
+		result := Abs(test.input)
+		if result != test.expected {
+			t.Errorf("Abs(%d) = %d; want %d", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestFactorial(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected int
+	}{
+		{input: 0, expected: 1},
+		{input: 1, expected: 1},
+		{input: 2, expected: 2},
+		{input: 3, expected: 6},
+		{input: 4, expected: 24},
+		{input: 5, expected: 120},
+		{input: 10, expected: 3628800},
+	}
+
+	for _, test := range tests {
+		result := Factorial(test.input)
+		if result != test.expected {
+			t.Errorf("Factorial(%d) = %d; want %d", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestFilterDuplicates(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected []int
+	}{
+		{input: []int{1, 2, 2, 3, 4, 4, 5}, expected: []int{1, 2, 3, 4, 5}},
+		{input: []int{1, 1, 1, 1, 1}, expected: []int{1}},
+		{input: []int{1, 2, 3, 4, 5}, expected: []int{1, 2, 3, 4, 5}},
+		{input: []int{}, expected: []int{}},
+		{input: []int{5, 5, 5, 5, 5, 5}, expected: []int{5}},
+	}
+
+	testsWithStrings := []struct {
+		input    []string
+		expected []string
+	}{
+		{input: []string{"a", "b", "b", "c", "d", "d", "e"}, expected: []string{"a", "b", "c", "d", "e"}},
+		{input: []string{"a", "a", "a", "a", "a"}, expected: []string{"a"}},
+	}
+
+	for _, test := range slices.Concat(tests) {
+		result := FilterDuplicates(test.input)
+		if !reflect.DeepEqual(result, test.expected) {
+			t.Errorf("FilterDuplicates(%v) = %v; want %v", test.input, result, test.expected)
+		}
+	}
+	for _, test := range slices.Concat(testsWithStrings) {
+		result := FilterDuplicates(test.input)
+		if !reflect.DeepEqual(result, test.expected) {
+			t.Errorf("FilterDuplicates(%v) = %v; want %v", test.input, result, test.expected)
 		}
 	}
 }

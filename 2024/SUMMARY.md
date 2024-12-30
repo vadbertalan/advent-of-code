@@ -20,7 +20,7 @@
 | 18  | Byte obstacles in memory         | 1:33                 | dijkstra                                   | -                | easy       |           |
 | 19  | Towels                           | 0:52                 | recursive, dp, cache                       | onsen            | easy       |           |
 | 20  |                                  |                      |                                            | -                |            |           |
-| 21  |                                  |                      |                                            | -                |            |           |
+| 21  | Keypad chains                    | >24h (spent ~20h)    | rcrs, cache, permutation, manhattan sh.dst | -                | hard       | Hint      |
 | 22  | Bananas for hiding spots         | 7:07 (started late)  | set, hashmap, xor, modulo                  | pseudorandom     | easy       |           |
 | 23  | LAN party - computer connections | >24 (needed ~1.5h)   | graph, longest circle in graph, circles    | LAN party        | medium     |           |
 | 24  | Addition logic gates & wires     | >24 (needed 1d)      | OOP, pointers, graphviz, visualization     | -                | very hard  |           |

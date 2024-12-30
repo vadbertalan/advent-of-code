@@ -315,3 +315,26 @@ func CloneArray[T any](arr []T) []T {
 	copy(newArr, arr)
 	return newArr
 }
+
+func Abs(a int) int {
+	return int(math.Abs(float64(a)))
+}
+
+func Factorial(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * Factorial(n-1)
+}
+
+func FilterDuplicates[T comparable](arr []T) []T {
+	keys := make(map[T]bool)
+	list := []T{}
+	for _, entry := range arr {
+		if _, ok := keys[entry]; !ok {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
+}
