@@ -21,6 +21,7 @@ jobs:
       - name: Import GPG key
         shell: bash
         run: |
+          echo "$GPG_PRIVATE_KEY" | wc -c
           echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --import
           echo "$GPG_OWNERTRUST" | base64 --decode | gpg --import-ownertrust
 
