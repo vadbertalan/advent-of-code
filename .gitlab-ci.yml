@@ -2,6 +2,11 @@ stages:
   - test
 
 go-test:
+  before_script:
+    - apt-get update && apt-get install -y git-crypt gnupg
+    - echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
+    - echo "$GPG_OWNERTRUST" | base64 --decode | gpg --import-ownertrust
+    - git-crypt unlock
   stage: test
   image: golang:latest
   script:

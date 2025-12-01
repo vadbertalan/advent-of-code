@@ -11,7 +11,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # IMPORTANT: must pull full history for git-crypt
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y git-crypt gnupg
+
+      - name: Import GPG key
+        shell: bash
+        run: |
+          echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
+          echo "$GPG_OWNERTRUST" | base64 --decode | gpg --import-ownertrust
+
+      - name: Unlock git-crypt
+        run: git-crypt unlock
 
       - name: Set up Go
         uses: actions/setup-go@v4
