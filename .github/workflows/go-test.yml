@@ -20,7 +20,7 @@ jobs:
 
       - name: Import GPG key
         shell: bash
-        with:
+        env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           GPG_OWNERTRUST: ${{ secrets.GPG_OWNERTRUST }}
         run: |
