@@ -4,6 +4,9 @@ stages:
 go-test:
   before_script:
     - apt-get update && apt-get install -y git-crypt gnupg
+    - echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+    - echo "use-agent" >> ~/.gnupg/gpg.conf
+    - gpgconf --kill gpg-agent || true
     - echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
     - echo "$GPG_OWNERTRUST" | base64 --decode | gpg --import-ownertrust
     - git-crypt unlock
