@@ -338,3 +338,12 @@ func FilterDuplicates[T comparable](arr []T) []T {
 	}
 	return list
 }
+
+func GroupBy[T any, K comparable](arr []T, keySelector func(T) K) map[K][]T {
+	grouped := map[K][]T{}
+	for _, item := range arr {
+		key := keySelector(item)
+		grouped[key] = append(grouped[key], item)
+	}
+	return grouped
+}

@@ -18,7 +18,7 @@ The package also introspects the current day from the path/name of the script th
 
 ### Start to solve a day's exercise
 
-You can setup an initial workspace for Go for the current day by running `./setupgo.sh` and then navigate into the create dir. Be sure that the file has the right permissions: `chmod 777 setupgo.sh`.
+You can setup an initial workspace for Go for the current day by running `./setupgo.sh` and then navigate into the created directory. Be sure that the file has the right permissions: `chmod 777 setupgo.sh`.
 
 #### Example Usage of `setupgo.sh`
 
