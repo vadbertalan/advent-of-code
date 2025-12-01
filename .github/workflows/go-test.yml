@@ -20,6 +20,9 @@ jobs:
 
       - name: Import GPG key
         shell: bash
+        with:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_OWNERTRUST: ${{ secrets.GPG_OWNERTRUST }}
         run: |
           echo "$GPG_PRIVATE_KEY" | wc -c
           echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --import
