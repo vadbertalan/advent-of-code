@@ -16,6 +16,16 @@ The package also introspects the current day from the path/name of the script th
 
 ## Solving with Go
 
+### Prerequisites
+
+Download GoLang from https://go.dev/dl/. It has to be on your PATH.
+
+### Unencrypting the personalized input files
+
+You need `git-crypt` and `gnupg`. Run `brew install git-crypt gnupg`.
+
+The after making sure you have the GPG fingerprint files imported and trusted, run `git-crypt unlock`.
+
 ### Start to solve a day's exercise
 
 You can setup an initial workspace for Go for the current day by running `./setupgo.sh` and then navigate into the created directory. Be sure that the file has the right permissions: `chmod 777 setupgo.sh`.
@@ -65,7 +75,7 @@ go run 25.go
 
 This utility generates a Go test file for a specific Advent of Code challenge day and year, with provided answers for the first and second parts of the challenge, including example answers.
 
-#### Usage: 
+#### Usage:
 
 `go run utils/gen/gentest.go <year> <day> <first_example_answer> <second_example_answer> <first_answer> <second_answer>`
 
