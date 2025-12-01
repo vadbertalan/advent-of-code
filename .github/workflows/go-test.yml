@@ -24,6 +24,8 @@ jobs:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           GPG_OWNERTRUST: ${{ secrets.GPG_OWNERTRUST }}
         run: |
+          mkdir -p ~/.gnupg
+          chmod 700 ~/.gnupg
           echo "use-agent" >> ~/.gnupg/gpg.conf
           echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
           echo "trust-model always" >> ~/.gnupg/gpg.conf
