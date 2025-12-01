@@ -4,6 +4,8 @@ stages:
 go-test:
   before_script:
     - apt-get update && apt-get install -y git-crypt gnupg
+    - mkdir -p ~/.gnupg
+    - chmod 700 ~/.gnupg
     - echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
     - echo "use-agent" >> ~/.gnupg/gpg.conf
     - gpgconf --kill gpg-agent || true
