@@ -2,15 +2,22 @@
 
 Hello and welcome! In this repo I gather all my solutions to all the AoC editions.
 
-[[_TOC_]]
+[[_TOC_]] 
+
+<!-- AOC TILES BEGIN -->
+<!-- AOC TILES END -->
 
 # Setup
+
+Run: `chmod 777 ./install.sh && ./install.sh`.
 
 ## Session for aocd package
 
 Session token needed for the aoc packages to work: `export AOC_SESSION=ABCD1324`, get that from browser cookies. (More info: https://github.com/wimglenn/advent-of-code-wim/issues/1)
 
 ## Solving with Python
+
+Run `chmod 777 install.bat && ./install.bat` to install the dependencies
 
 The package also introspects the current day from the path/name of the script that contains the solution, so be careful with namings: `10_1_asd.py` is not good, use `10_a_asd.py` instead.
 
@@ -22,7 +29,7 @@ Download GoLang from https://go.dev/dl/. It has to be on your PATH.
 
 ### Unencrypting the personalized input files
 
-You need `git-crypt` and `gnupg`. Run `brew install git-crypt gnupg`.
+You need `git-crypt` and `gnupg`. Make sure you have the deps for this: `git-crypt` and `gnupg`. Run `brew install git-crypt gnupg`.
 
 The after making sure you have the GPG fingerprint files imported and trusted, run `git-crypt unlock`.
 
