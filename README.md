@@ -17,7 +17,7 @@ Hello and welcome! In this repo I gather all my solutions to all the AoC edition
 <a href="2025/02-invalid-id-ranges/02_test.go">
   <img src=".aoc_tiles/tiles/2025/02.png" width="161px">
 </a>
-<a href="2025/03-battery-charges-dp/3.go">
+<a href="2025/03-battery-charges-dp/03_test.go">
   <img src=".aoc_tiles/tiles/2025/03.png" width="161px">
 </a>
 <h1 align="center">

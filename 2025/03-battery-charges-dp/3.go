@@ -4,17 +4,12 @@ package main
 
 import (
 	"aoc/utils"
-	"aoc/utils/coordinate"
-	"aoc/utils/matrix"
 	"fmt"
 	"strconv"
 	"time"
 )
 
 const aocDay int = 3
-
-type coord = coordinate.Coord
-type mat = matrix.Matrix[string]
 
 //  ____            _     _
 // |  _ \ __ _ _ __| |_  / |
@@ -41,6 +36,8 @@ func First(lines []string) (strigifiedResult string) {
 	strigifiedResult = fmt.Sprint(result)
 	return strigifiedResult
 }
+
+// Your puzzle answer was 17435
 
 //  ____            _     ____
 // |  _ \ __ _ _ __| |_  |___ \
@@ -78,6 +75,8 @@ func Second(lines []string) (strigifiedResult string) {
 	strigifiedResult = fmt.Sprint(result)
 	return strigifiedResult
 }
+
+// Your puzzle answer was 172886048065379
 
 func main() {
 	startTime := time.Now()
