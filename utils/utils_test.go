@@ -145,3 +145,45 @@ func TestFilterDuplicates(t *testing.T) {
 		}
 	}
 }
+
+func TestAtoiEdgeCases(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{input: "2147483647", expected: 2147483647},   // max int32
+		{input: "-2147483648", expected: -2147483648}, // min int32
+		{input: "00123", expected: 123},               // leading zeros
+		{input: "-0", expected: 0},                    // negative zero
+		{input: "1", expected: 1},                     // single digit
+	}
+
+	for _, test := range tests {
+		result := Atoi(test.input)
+		if result != test.expected {
+			t.Errorf("Atoi(%q) = %d; want %d", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestAtoiPanic(t *testing.T) {
+	tests := []string{
+		"abc",
+		"12a34",
+		"1.5",
+		"",
+		"  ",
+		"1 2 3",
+	}
+
+	for _, input := range tests {
+		t.Run(input, func(t *testing.T) {
+			defer func() {
+				if r := recover(); r == nil {
+					t.Errorf("Atoi(%q) should panic but didn't", input)
+				}
+			}()
+			Atoi(input)
+		})
+	}
+}

@@ -347,3 +347,11 @@ func GroupBy[T any, K comparable](arr []T, keySelector func(T) K) map[K][]T {
 	}
 	return grouped
 }
+
+func Atoi(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		panic(err)
+	}
+	return i
+}
