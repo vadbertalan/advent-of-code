@@ -12,3 +12,5 @@ else
 	mkdir -p .aoc_tiles
 	echo $AOC_SESSION > .aoc_tiles/session.cookie
 fi
+
+chmod 777 ./install-python-deps.bat && ./install-python-deps.bat

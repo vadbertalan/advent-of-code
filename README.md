@@ -341,7 +341,7 @@ Session token needed for the aoc packages to work: `export AOC_SESSION=ABCD1324`
 
 ## Solving with Python
 
-Run `chmod 777 install.bat && ./install.bat` to install the dependencies
+Run `chmod 777 install-python-deps.bat && ./install-python-deps.bat` to install Python dependencies
 
 The package also introspects the current day from the path/name of the script that contains the solution, so be careful with namings: `10_1_asd.py` is not good, use `10_a_asd.py` instead.
 
