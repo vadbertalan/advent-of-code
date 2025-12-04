@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strconv"
 	"text/template"
@@ -165,5 +166,17 @@ func main() {
 		return
 	}
 
-	fmt.Println("Test file generated successfully.", filePath)
+	fmt.Println("Test file generated successfully. Running the test...", filePath)
+
+	// Run the generated test
+	cmd := exec.Command("go", "test", "-v")
+	cmd.Dir = dayDir
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Println("Test execution failed:")
+		fmt.Println(string(output))
+		os.Exit(1)
+	}
+	fmt.Println("Test execution result:")
+	fmt.Println(string(output))
 }
