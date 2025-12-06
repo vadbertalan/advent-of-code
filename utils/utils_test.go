@@ -187,3 +187,31 @@ func TestAtoiPanic(t *testing.T) {
 		})
 	}
 }
+
+func TestCloneMatrix(t *testing.T) {
+	tests := []struct {
+		input    [][]int
+		expected [][]int
+	}{
+		{[][]int{{1, 2}, {3, 4}}, [][]int{{1, 2}, {3, 4}}},
+		{[][]int{{1}}, [][]int{{1}}},
+		{[][]int{}, [][]int{}},
+		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}},
+		{[][]int{{0}, {0}, {0}}, [][]int{{0}, {0}, {0}}},
+	}
+
+	for _, test := range tests {
+		result := CloneMatrix(test.input)
+		if !reflect.DeepEqual(result, test.expected) {
+			t.Errorf("CloneMatrix(%v) = %v; want %v", test.input, result, test.expected)
+		}
+		if len(result) > 0 && len(test.input) > 0 {
+			if &result == &test.input {
+				t.Errorf("CloneMatrix(%v) returned the same reference", test.input)
+			}
+			if &result[0] == &test.input[0] {
+				t.Errorf("CloneMatrix(%v) returned the same row reference", test.input)
+			}
+		}
+	}
+}

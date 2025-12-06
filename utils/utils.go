@@ -316,6 +316,15 @@ func CloneArray[T any](arr []T) []T {
 	return newArr
 }
 
+func CloneMatrix[T any](matrix [][]T) [][]T {
+	newMatrix := make([][]T, len(matrix))
+	for i := range matrix {
+		newMatrix[i] = make([]T, len(matrix[i]))
+		copy(newMatrix[i], matrix[i])
+	}
+	return newMatrix
+}
+
 func Abs(a int) int {
 	return int(math.Abs(float64(a)))
 }
