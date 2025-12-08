@@ -65,17 +65,17 @@ func (g *Graph[T]) GetEdges() (edges [][2]string) {
 	return edges
 }
 
-func (g *Graph[T]) CountComponents(startNode string) int {
-	componentCount := 0
-
+func (g *Graph[T]) CountComponents(startNode string) (int, [][]string) {
+	componentsCount := 0
 	nodeMap := map[string]int{}
-
 	visitedNodes := 0
+	components := [][]string{}
 
 	q := collections.NewQueue[string]()
 
 	for visitedNodes != len(g.Neighbors) {
 		q.Append(startNode)
+		currentComponent := []string{}
 
 		// Traverse current component of startNode
 		for !q.IsEmpty() {
@@ -89,7 +89,8 @@ func (g *Graph[T]) CountComponents(startNode string) int {
 			}
 
 			visitedNodes++
-			nodeMap[node] = componentCount
+			nodeMap[node] = componentsCount
+			currentComponent = append(currentComponent, node)
 
 			for _, n := range g.Neighbors[node] {
 				_, didVisit := nodeMap[n]
@@ -99,19 +100,21 @@ func (g *Graph[T]) CountComponents(startNode string) int {
 			}
 		}
 
+		components = append(components, currentComponent)
+
 		// Get new start node
 		for node := range g.Neighbors {
 			_, didVisit := nodeMap[node]
 			if !didVisit {
 				startNode = node
-				continue
+				break
 			}
 		}
 
-		componentCount++
+		componentsCount++
 	}
 
-	return componentCount
+	return componentsCount, components
 }
 
 func (g *Graph[T]) TraverseBFS(startNode string) (path []string, edges []string) {
