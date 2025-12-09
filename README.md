@@ -6,10 +6,10 @@ Hello and welcome! In this repo I gather all my solutions to all the AoC edition
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  Advent of Code - 190/516 ⭐
+  Advent of Code - 192/518 ⭐
 </h1>
 <h1 align="center">
-  2025 - 16 ⭐ - Go
+  2025 - 18 ⭐ - Go
 </h1>
 <a href="2025/01-safe-lock-turning/01_test.go">
   <img src=".aoc_tiles/tiles/2025/01.png" width="161px">
@@ -34,6 +34,9 @@ Hello and welcome! In this repo I gather all my solutions to all the AoC edition
 </a>
 <a href="2025/08/08_test.go">
   <img src=".aoc_tiles/tiles/2025/08.png" width="161px">
+</a>
+<a href="2025/09-red-green-tiles/09_test.go">
+  <img src=".aoc_tiles/tiles/2025/09.png" width="161px">
 </a>
 <h1 align="center">
   2024 - 45 ⭐ - Go
