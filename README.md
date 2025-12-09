@@ -32,7 +32,7 @@ Hello and welcome! In this repo I gather all my solutions to all the AoC edition
 <a href="2025/07-beam-time-split/07_test.go">
   <img src=".aoc_tiles/tiles/2025/07.png" width="161px">
 </a>
-<a href="2025/08/08_test.go">
+<a href="2025/08-junction-boxes/08_test.go">
   <img src=".aoc_tiles/tiles/2025/08.png" width="161px">
 </a>
 <a href="2025/09-red-green-tiles/09_test.go">
