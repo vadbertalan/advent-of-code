@@ -3,9 +3,9 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/coordinate"
-	"aoc/utils/formulae"
+	"aoc/utils-go"
+	"aoc/utils-go/coordinate"
+	"aoc/utils-go/formulae"
 	"fmt"
 	"strconv"
 	"strings"

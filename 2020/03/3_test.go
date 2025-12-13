@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc/utils"
+	"aoc/utils-go"
 	"fmt"
 	"testing"
 )
@@ -18,7 +18,7 @@ func getExampleInputLines() []string {
 
 func TestFirst(t *testing.T) {
 	expected := "274"
-	
+
 	lines := getInputLines()
 	result := First(lines)
 
@@ -29,7 +29,7 @@ func TestFirst(t *testing.T) {
 
 func TestFirstExample(t *testing.T) {
 	expected := "7"
-	
+
 	lines := getExampleInputLines()
 	result := First(lines)
 
@@ -40,7 +40,7 @@ func TestFirstExample(t *testing.T) {
 
 func TestSecond(t *testing.T) {
 	expected := "6050183040"
-	
+
 	lines := getInputLines()
 	result := Second(lines)
 
@@ -51,7 +51,7 @@ func TestSecond(t *testing.T) {
 
 func TestSecondExample(t *testing.T) {
 	expected := "336"
-	
+
 	lines := getExampleInputLines()
 	result := Second(lines)
 

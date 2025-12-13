@@ -3,8 +3,8 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/coordinate"
+	"aoc/utils-go"
+	"aoc/utils-go/coordinate"
 	"fmt"
 	"math"
 	"strconv"

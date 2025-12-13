@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"aoc/utils/collections"
+	"aoc/utils-go/collections"
 	"fmt"
 	"slices"
 )

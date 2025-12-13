@@ -3,9 +3,9 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/collections"
-	"aoc/utils/graph"
+	"aoc/utils-go"
+	"aoc/utils-go/collections"
+	"aoc/utils-go/graph"
 	"fmt"
 	"strconv"
 	"strings"

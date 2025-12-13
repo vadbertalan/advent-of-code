@@ -3,8 +3,8 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/matrix"
+	"aoc/utils-go"
+	"aoc/utils-go/matrix"
 	"fmt"
 	"time"
 )

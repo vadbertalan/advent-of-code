@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"aoc/utils"
+	"aoc/utils-go"
 	"fmt"
 )
 

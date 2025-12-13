@@ -1,8 +1,8 @@
 package matrix
 
 import (
-	"aoc/utils/coordinate"
-	"aoc/utils/direction"
+	"aoc/utils-go/coordinate"
+	"aoc/utils-go/direction"
 	"fmt"
 )
 

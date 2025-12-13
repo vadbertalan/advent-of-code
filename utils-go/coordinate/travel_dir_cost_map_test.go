@@ -1,7 +1,7 @@
 package coordinate
 
 import (
-	"aoc/utils/direction"
+	"aoc/utils-go/direction"
 	"testing"
 )
 

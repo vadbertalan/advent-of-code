@@ -3,8 +3,8 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/collections"
+	"aoc/utils-go"
+	"aoc/utils-go/collections"
 	"fmt"
 	"strconv"
 	"strings"

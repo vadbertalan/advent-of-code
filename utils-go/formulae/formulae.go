@@ -1,7 +1,7 @@
 package formulae
 
 import (
-	"aoc/utils/coordinate"
+	"aoc/utils-go/coordinate"
 	"math"
 )
 

@@ -3,8 +3,8 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/graph"
+	"aoc/utils-go"
+	"aoc/utils-go/graph"
 	"fmt"
 	"slices"
 	"strings"

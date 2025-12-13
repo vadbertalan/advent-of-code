@@ -3,11 +3,11 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/coordinate"
-	"aoc/utils/direction"
-	"aoc/utils/formulae"
-	"aoc/utils/matrix"
+	"aoc/utils-go"
+	"aoc/utils-go/coordinate"
+	"aoc/utils-go/direction"
+	"aoc/utils-go/formulae"
+	"aoc/utils-go/matrix"
 	"fmt"
 	"strings"
 	"time"

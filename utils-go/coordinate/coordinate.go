@@ -1,8 +1,8 @@
 package coordinate
 
 import (
-	"aoc/utils"
-	"aoc/utils/direction"
+	"aoc/utils-go"
+	"aoc/utils-go/direction"
 	"fmt"
 	"math"
 	"strconv"

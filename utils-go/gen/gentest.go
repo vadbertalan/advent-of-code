@@ -12,7 +12,7 @@ import (
 const testTemplate = `package main
 
 import (
-	"aoc/utils"
+	"aoc/utils-go"
 	"fmt"
 	"testing"
 )

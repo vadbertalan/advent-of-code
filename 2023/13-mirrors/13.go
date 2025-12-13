@@ -1,9 +1,9 @@
 package main
 
 import (
-	"aoc/utils"
-	"aoc/utils/coordinate"
-	"aoc/utils/matrix"
+	"aoc/utils-go"
+	"aoc/utils-go/coordinate"
+	"aoc/utils-go/matrix"
 	"fmt"
 	"time"
 )
