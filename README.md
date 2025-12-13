@@ -6,7 +6,7 @@ Hello and welcome! In this repo I gather all my solutions to all the AoC edition
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  Advent of Code - 192/518 ⭐
+  Advent of Code - 192/526 ⭐
 </h1>
 <h1 align="center">
   2025 - 18 ⭐ - Go
@@ -430,3 +430,59 @@ This utility generates a Go test file for a specific Advent of Code challenge da
 `go run utils/gen/gentest.go 2023 01 123 456 12345 67890`
 
 The generated test file will be created in a directory named after the specified year, with the filename format `<day>\_test.go`. The test file will contain the provided answers embedded in a template.
+
+## Solving with TypeScript
+
+### Prerequisites
+
+Node.js installed.
+Run `npm install` to install dependencies.
+
+### Start to solve a day's exercise
+
+You can set up an initial workspace for TypeScript for the current day by running `node setup`.
+
+#### Example Usage
+
+To set up the workspace for a specific year and day:
+
+```sh
+npx run setup -- -y 2024 -d 1
+```
+
+To set up the workspace for the current year and day (only allowed in December or via defaults):
+
+```sh
+npx run setup
+```
+
+### Running the solution
+
+Navigate to the day's directory (e.g. `cd 2024/01`) and run:
+
+```sh
+npx tsx 1.ts
+```
+
+This will run both parts of the solution using the input files present in the directory.
+
+### Test Generation
+
+You can generate and run a test file for a specific day with provided expected answers (similar to the Go framework's `gentest`):
+
+```sh
+npm run gen-test <year> <day> <example_1> <example_2> <real_1> <real_2>
+```
+
+Example:
+
+```sh
+npm run gen-test 2014 01 0 0 100 200
+```
+
+This will create `2014/01/1.test.ts` and immediately run it using Jest.
+You can also run all tests in the project with:
+
+```sh
+npm test
+```

@@ -1,7 +1,7 @@
 stages:
   - test
 
-go-test:
+.unlock-secrets: &unlock-secrets
   before_script:
     - apt-get update && apt-get install -y git-crypt gnupg
     - mkdir -p ~/.gnupg
@@ -12,7 +12,18 @@ go-test:
     - echo "$GPG_PRIVATE_KEY" | base64 --decode | gpg --batch --import
     - echo "$GPG_OWNERTRUST" | base64 --decode | gpg --import-ownertrust
     - git-crypt unlock
+
+go-test:
+  <<: *unlock-secrets
   stage: test
   image: golang:latest
   script:
     - go test ./...
+
+ts-test:
+  <<: *unlock-secrets
+  stage: test
+  image: node:22
+  script:
+    - npm ci
+    - npm test

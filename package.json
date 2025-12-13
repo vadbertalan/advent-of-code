@@ -1,0 +1,22 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Advent of Code solutions",
+  "scripts": {
+    "setup": "npx tsx setup.ts",
+    "gen-test": "npx tsx gentest.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@types/node": "^22.10.2",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6"
+  }
+}

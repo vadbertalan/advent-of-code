@@ -1,3 +1,4 @@
 .DS_Store
 .aoc_tiles/*
 !.aoc_tiles/tiles/
+node_modules
