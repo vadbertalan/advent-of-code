@@ -5,7 +5,7 @@
 #   -h, --help        : Displays usage information.
 #
 # Example usage:
-#   ./setupgo.sh -y 2023 -d 1
+#   ./solvego.sh -y 2023 -d 1
 #
 # The script processes the provided arguments and passes them to the Go program `setup.go`.
 # If no arguments are provided, the script will end up calling `go run setup.go` without any arguments,

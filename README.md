@@ -380,20 +380,20 @@ The after making sure you have the GPG fingerprint files imported and trusted, r
 
 ### Start to solve a day's exercise
 
-You can setup an initial workspace for Go for the current day by running `./setupgo.sh` and then navigate into the created directory. Be sure that the file has the right permissions: `chmod 777 setupgo.sh`.
+You can setup an initial workspace for Go for the current day by running `./solvego.sh` and then navigate into the created directory. Be sure that the file has the right permissions: `chmod 777 solvego.sh`.
 
-#### Example Usage of `setupgo.sh`
+#### Example Usage of `solvego.sh`
 
 To set up the workspace for a specific year and day, you can use the following command:
 
 ```sh
-./setupgo.sh -y 2023 -d 1
+./solvego.sh -y 2023 -d 1
 ```
 
 If you want to set up the workspace for the current year and day, simply run (works only if the month is December):
 
 ```sh
-./setupgo.sh
+./solvego.sh
 ```
 
 ### Running with the framework
