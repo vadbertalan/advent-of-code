@@ -39,6 +39,14 @@ func NewSet[T comparable]() *Set[T] {
 	return s
 }
 
+func NewSetFromArray[T comparable](arr []T) *Set[T] {
+	s := NewSet[T]()
+	for _, elem := range arr {
+		s.Add(elem)
+	}
+	return s
+}
+
 //optional functionalities
 
 // AddMulti Add multiple values in the set
@@ -94,5 +102,11 @@ func (s *Set[T]) Difference(s2 *Set[T]) *Set[T] {
 		}
 		res.Add(v)
 	}
+	return res
+}
+
+func (s *Set[T]) Copy() *Set[T] {
+	res := NewSet[T]()
+	res.AddMulti(s.GetValues()...)
 	return res
 }

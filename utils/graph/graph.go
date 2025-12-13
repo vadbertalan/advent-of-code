@@ -3,20 +3,10 @@ package graph
 import (
 	"aoc/utils/collections"
 	"fmt"
+	"slices"
 )
 
 type EdgeKey = string
-
-type GraphMethods[T any] interface {
-	Println()
-	AddNode(name string, value T)
-	AddEdge(node1Name, node2Name string)
-	GetEdges() [2]string
-	GetIncomingNodesOf(node string) []string
-	RemoveEdge(edgeKey EdgeKey)
-	CountComponents(startNode string) int
-	TraverseBFS(startNode string) (path []string, edges []EdgeKey)
-}
 
 type Graph[T any] struct {
 	Neighbors map[string][]string
@@ -152,4 +142,31 @@ func (g *Graph[T]) TraverseBFS(startNode string) (path []string, edges []string)
 		}
 	}
 	return path, edges
+}
+
+func (g *Graph[T]) getAllPaths(from, to string, seen collections.Set[string]) (paths [][]string) {
+	if from == to {
+		return [][]string{{to}}
+	}
+
+	if seen.Has(from) {
+		return nil
+	}
+
+	// Create a new set for the current path to avoid modifying the parent's 'seen' set
+	// for other branches.
+	currentPathSeen := seen.Copy()
+	currentPathSeen.Add(from) // Add the current node to this path's seen set
+
+	for _, nb := range g.Neighbors[from] {
+		// Recursively find paths from neighbor to 'to', passing the updated 'seen' set
+		for _, path := range g.getAllPaths(nb, to, *currentPathSeen) {
+			paths = append(paths, slices.Concat([]string{from}, path))
+		}
+	}
+	return paths
+}
+
+func (g *Graph[T]) GetAllPaths(from, to string) (paths [][]string) {
+	return g.getAllPaths(from, to, *collections.NewSet[string]())
 }

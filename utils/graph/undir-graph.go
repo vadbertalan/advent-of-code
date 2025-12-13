@@ -31,6 +31,21 @@ func (g *UGraph[T]) AddEdge(node1, node2 string) {
 	g.Neighbors[node2] = append(g.Neighbors[node2], node1)
 }
 
+// Like AddEdge, but does not fail if no node1 or node2 is found, inserts them instead.
+func (g *UGraph[T]) AddEdgeUpsert(node1, node2 string) {
+	_, ok := g.Neighbors[node1]
+	if !ok {
+		g.AddNode(node1, nil)
+	}
+
+	_, ok = g.Neighbors[node2]
+	if !ok {
+		g.AddNode(node2, nil)
+	}
+
+	g.Neighbors[node1] = append(g.Neighbors[node1], node2)
+}
+
 func (g *UGraph[T]) HasEdge(node1, node2 string) bool {
 	return utils.Contains(g.Neighbors[node1], node2)
 }

@@ -30,6 +30,21 @@ func (g *DGraph[T]) AddEdge(node1, node2 string) {
 	g.Neighbors[node1] = append(g.Neighbors[node1], node2)
 }
 
+// Like AddEdge, but does not fail if no node1 or node2 is found, inserts them instead.
+func (g *DGraph[T]) AddEdgeUpsert(node1, node2 string) {
+	_, ok := g.Neighbors[node1]
+	if !ok {
+		g.AddNode(node1, nil)
+	}
+
+	_, ok = g.Neighbors[node2]
+	if !ok {
+		g.AddNode(node2, nil)
+	}
+
+	g.Neighbors[node1] = append(g.Neighbors[node1], node2)
+}
+
 func (g *DGraph[T]) RemoveEdge(edgeKey string) {
 	node1, node2 := ParseEdgeKey(edgeKey)
 	g.Neighbors[node1] = utils.RemoveItemFromArray(g.Neighbors[node1], node2)
