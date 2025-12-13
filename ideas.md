@@ -1,4 +1,3 @@
 - next year summary p1 p2 time separately
-- tests with correct results
-- CI integration
-- migrate to GitHub
+- generate own-sdk documentation: docusaurus? put it on github pages
+- pre-commit hook that takes images from dirs and shows them in some .md file
