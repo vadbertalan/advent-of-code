@@ -23,12 +23,6 @@ const templateAdjusted = `
 import { first, second } from './${parseInt(day)}';
 import { readLines } from '@/utils-ts/index';
 
-// Mocking readLines to read from absolute path if needed, or just relying on it reading relative to CWD?
-// real readLines implementation uses fs.readFileSync(filePath).
-// If we run jest from root, correct.
-// But the tests pass absolute paths? No, "2014/01/1.in".
-// If run from root, that works.
-
 describe('Day ${day}', () => {
     
     test('First part example', () => {

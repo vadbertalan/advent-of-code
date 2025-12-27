@@ -22,6 +22,6 @@ export function readLines(filePath: string): string[] {
  * Gets the input file extension based on some logic, defaulting to 'in'.
  * In the Go code this seemed to just default to "in" mostly, but we can make it flexible.
  */
-export function getInputFileExt(day: number): string {
-    return "in";
+export function getInputFileExt(useRealInput: boolean): string {
+    return useRealInput ? "in" : "exin";
 }

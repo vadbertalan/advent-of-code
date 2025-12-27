@@ -50,10 +50,6 @@ fs.mkdirSync(dayDir, { recursive: true });
 console.log(`Created folder for problem ${dayStr}, make sure to navigate into it:\n\ncd ${dayDir}\n`);
 
 const tsFileName = path.join(dayDir, `${day}.ts`);
-// const exInFileName = path.join(dayDir, `${day}.exin`);
-// const inFileName = path.join(dayDir, `${day}.in`);
-
-// Why comment out above? We need to use them.
 const exInFileName = path.join(dayDir, `${day}.exin`);
 const inFileName = path.join(dayDir, `${day}.in`);
 
