@@ -457,12 +457,14 @@ To set up the workspace for a specific year and day:
 
 ```sh
 npx run setup -- -y 2024 -d 1
+npx tsx setup -- -y 2024 -d 1
 ```
 
 To set up the workspace for the current year and day (only allowed in December or via defaults):
 
 ```sh
 npx run setup
+npx tsx setup
 ```
 
 ### Running the solution
